@@ -115,7 +115,6 @@ UICollectionViewDataSource
     
     self.northAmericaButton = [AZBaseButton buttonWithType:UIButtonTypeCustom];
     _northAmericaButton.number = @234;
-    _northAmericaButton.tag = 1234;
     _northAmericaButton.x = northAmericaX - 23;
     _northAmericaButton.y = northAmericaY - 30;
     [_northAmericaButton setTitle:@"北美洲" forState:UIControlStateNormal];
@@ -131,7 +130,6 @@ UICollectionViewDataSource
     
     self.southAmericaButton = [AZBaseButton buttonWithType:UIButtonTypeCustom];
     _southAmericaButton.number = @235;
-    _southAmericaButton.tag = 1235;
     _southAmericaButton.x = southAmericaX - 23;
     _southAmericaButton.y = southAmericaY - 30;
     [_southAmericaButton setTitle:@"南美洲" forState:UIControlStateNormal];
@@ -146,7 +144,6 @@ UICollectionViewDataSource
     
     self.europeButton = [AZBaseButton buttonWithType:UIButtonTypeCustom];
     _europeButton.number = @12;
-    _europeButton.tag = 1012;
     _europeButton.x = europeX - 23;
     _europeButton.y = europeY - 30;
     [_europeButton setTitle:@"欧洲" forState:UIControlStateNormal];
@@ -161,7 +158,6 @@ UICollectionViewDataSource
     
     self.africaButton = [AZBaseButton buttonWithType:UIButtonTypeCustom];
     _africaButton.number = @76;
-    _africaButton.tag = 76;
     _africaButton.x = africaX - 23;
     _africaButton.y = africaY - 30;
     [_africaButton setTitle:@"非洲" forState:UIControlStateNormal];
@@ -176,7 +172,6 @@ UICollectionViewDataSource
     
     self.asiaButton = [AZBaseButton buttonWithType:UIButtonTypeCustom];
     _asiaButton.number = @10;
-    _asiaButton.tag = 1010;
     _asiaButton.click = NO;
     [_asiaButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_asiaButton setBackgroundImage:[UIImage imageNamed:@"按压后气泡"]forState:UIControlStateNormal];
@@ -194,7 +189,6 @@ UICollectionViewDataSource
     
     self.oceaniaButton = [AZBaseButton buttonWithType:UIButtonTypeCustom];
     _oceaniaButton.number = @239;
-    _oceaniaButton.tag = 1239;
     _oceaniaButton.x = oceaniaX - 23;
     _oceaniaButton.y = oceaniaY - 30;
     [_oceaniaButton addTarget:self action:@selector(oceaniaButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -209,7 +203,6 @@ UICollectionViewDataSource
     
     self.antarctionButton = [AZBaseButton buttonWithType:UIButtonTypeCustom];
     _antarctionButton.number = @759;
-    _antarctionButton.tag = 1759;
     _antarctionButton.x = antarctioncaX - 23;
     _antarctionButton.y = antarctioncaY - 30;
     [_antarctionButton addTarget:self action:@selector(antarctionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -491,7 +484,7 @@ UICollectionViewDataSource
             [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 NSArray *dataArray = [responseObject objectForKey:@"data"];
                 for (NSDictionary *dataDic in dataArray) {
-                    
+#pragma bug 点击过国家后不能更换大洲
                     if ([AZBaseButton.number isEqualToNumber:[dataDic objectForKey:@"id"]]) {
                         
                         // 存储当前点击选中大洲

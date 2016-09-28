@@ -15,6 +15,6 @@
 /// 没用的属性, 只是为了将代码收起来
 @property (nonatomic, assign) BOOL clickTwo;
 /// 判断按钮为哪个洲
-@property (nonatomic, assign) NSNumber *number;
+@property (nonatomic, strong) NSNumber *number;
 
 @end
