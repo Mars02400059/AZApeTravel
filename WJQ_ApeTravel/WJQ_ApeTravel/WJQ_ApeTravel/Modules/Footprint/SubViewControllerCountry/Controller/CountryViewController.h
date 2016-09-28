@@ -9,7 +9,13 @@
 #import "AZBaseController.h"
 
 @interface CountryViewController : AZBaseController
-
-@property (nonatomic, copy) NSString *number;
+/**
+ *  大洲ID
+ */
+@property (nonatomic, copy) NSString *oblastID;
+/**
+ *  国家ID
+ */
+@property (nonatomic, copy) NSString *countryID;
 
 @end

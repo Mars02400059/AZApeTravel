@@ -11,8 +11,14 @@
 		4191F8171D99205C00B88EBA /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4191F8161D99205C00B88EBA /* CityModel.m */; };
 		4191F81A1D9922A000B88EBA /* TravelInspanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4191F8191D9922A000B88EBA /* TravelInspanModel.m */; };
 		419D12591D994D0E008C36CF /* TravelInspanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 419D12581D994D0E008C36CF /* TravelInspanTableViewCell.m */; };
+		419D12A41D9A6E75008C36CF /* FootprintLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 419D12A31D9A6E75008C36CF /* FootprintLineTableViewCell.m */; };
 		419FE4FA1D98C303008ECAC5 /* JumpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 419FE4F91D98C303008ECAC5 /* JumpViewController.m */; };
 		419FE4FF1D98CAC8008ECAC5 /* CountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 419FE4FE1D98CAC8008ECAC5 /* CountryViewController.m */; };
+		41CA24011D9A87B600AF8EAD /* LookAllTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CA24001D9A87B600AF8EAD /* LookAllTableViewCell.m */; };
+		41CA24041D9A8F1100AF8EAD /* FoodprintHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CA24031D9A8F1100AF8EAD /* FoodprintHeadCollectionViewCell.m */; };
+		41CA24071D9AA2A000AF8EAD /* FootprintCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CA24061D9AA2A000AF8EAD /* FootprintCollectionTableViewCell.m */; };
+		41CA240D1D9AA48400AF8EAD /* FootPrintTwoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CA240C1D9AA48400AF8EAD /* FootPrintTwoCollectionViewCell.m */; };
+		41CA24121D9B4F9100AF8EAD /* CaravanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CA24111D9B4F9100AF8EAD /* CaravanViewController.m */; };
 		49252C4E1D93E1610068B48E /* HomeSlideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49252C4D1D93E1610068B48E /* HomeSlideModel.m */; };
 		49252C511D93E2430068B48E /* SlideCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49252C501D93E2430068B48E /* SlideCollectionViewCell.m */; };
 		49252C541D9405E20068B48E /* CommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49252C531D9405E20068B48E /* CommendView.m */; };
@@ -75,10 +81,22 @@
 		4191F8191D9922A000B88EBA /* TravelInspanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelInspanModel.m; sourceTree = "<group>"; };
 		419D12571D994D0E008C36CF /* TravelInspanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelInspanTableViewCell.h; sourceTree = "<group>"; };
 		419D12581D994D0E008C36CF /* TravelInspanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelInspanTableViewCell.m; sourceTree = "<group>"; };
+		419D12A21D9A6E75008C36CF /* FootprintLineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootprintLineTableViewCell.h; sourceTree = "<group>"; };
+		419D12A31D9A6E75008C36CF /* FootprintLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootprintLineTableViewCell.m; sourceTree = "<group>"; };
 		419FE4F81D98C303008ECAC5 /* JumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpViewController.h; sourceTree = "<group>"; };
 		419FE4F91D98C303008ECAC5 /* JumpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpViewController.m; sourceTree = "<group>"; };
 		419FE4FD1D98CAC8008ECAC5 /* CountryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryViewController.h; sourceTree = "<group>"; };
 		419FE4FE1D98CAC8008ECAC5 /* CountryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryViewController.m; sourceTree = "<group>"; };
+		41CA23FF1D9A87B600AF8EAD /* LookAllTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookAllTableViewCell.h; sourceTree = "<group>"; };
+		41CA24001D9A87B600AF8EAD /* LookAllTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookAllTableViewCell.m; sourceTree = "<group>"; };
+		41CA24021D9A8F1100AF8EAD /* FoodprintHeadCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodprintHeadCollectionViewCell.h; sourceTree = "<group>"; };
+		41CA24031D9A8F1100AF8EAD /* FoodprintHeadCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodprintHeadCollectionViewCell.m; sourceTree = "<group>"; };
+		41CA24051D9AA2A000AF8EAD /* FootprintCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootprintCollectionTableViewCell.h; sourceTree = "<group>"; };
+		41CA24061D9AA2A000AF8EAD /* FootprintCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootprintCollectionTableViewCell.m; sourceTree = "<group>"; };
+		41CA240B1D9AA48400AF8EAD /* FootPrintTwoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootPrintTwoCollectionViewCell.h; sourceTree = "<group>"; };
+		41CA240C1D9AA48400AF8EAD /* FootPrintTwoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootPrintTwoCollectionViewCell.m; sourceTree = "<group>"; };
+		41CA24101D9B4F9100AF8EAD /* CaravanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaravanViewController.h; sourceTree = "<group>"; };
+		41CA24111D9B4F9100AF8EAD /* CaravanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaravanViewController.m; sourceTree = "<group>"; };
 		49252C4C1D93E1610068B48E /* HomeSlideModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSlideModel.h; sourceTree = "<group>"; };
 		49252C4D1D93E1610068B48E /* HomeSlideModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSlideModel.m; sourceTree = "<group>"; };
 		49252C4F1D93E2430068B48E /* SlideCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideCollectionViewCell.h; sourceTree = "<group>"; };
@@ -178,23 +196,31 @@
 		4191F8101D991A1400B88EBA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4191F8121D991A5000B88EBA /* CountryModel.h */,
-				4191F8131D991A5000B88EBA /* CountryModel.m */,
 				4191F8151D99205C00B88EBA /* CityModel.h */,
 				4191F8161D99205C00B88EBA /* CityModel.m */,
+				4191F8121D991A5000B88EBA /* CountryModel.h */,
+				4191F8131D991A5000B88EBA /* CountryModel.m */,
 				4191F8181D9922A000B88EBA /* TravelInspanModel.h */,
 				4191F8191D9922A000B88EBA /* TravelInspanModel.m */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4191F8111D991A1E00B88EBA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				41CA24021D9A8F1100AF8EAD /* FoodprintHeadCollectionViewCell.h */,
+				41CA24031D9A8F1100AF8EAD /* FoodprintHeadCollectionViewCell.m */,
+				41CA240B1D9AA48400AF8EAD /* FootPrintTwoCollectionViewCell.h */,
+				41CA240C1D9AA48400AF8EAD /* FootPrintTwoCollectionViewCell.m */,
+				41CA24051D9AA2A000AF8EAD /* FootprintCollectionTableViewCell.h */,
+				41CA24061D9AA2A000AF8EAD /* FootprintCollectionTableViewCell.m */,
+				41CA23FF1D9A87B600AF8EAD /* LookAllTableViewCell.h */,
+				41CA24001D9A87B600AF8EAD /* LookAllTableViewCell.m */,
 				419D12571D994D0E008C36CF /* TravelInspanTableViewCell.h */,
 				419D12581D994D0E008C36CF /* TravelInspanTableViewCell.m */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		419FE4F61D98C250008ECAC5 /* JumpSubViewController */ = {
@@ -202,7 +228,7 @@
 			children = (
 				419FE4F71D98C2D1008ECAC5 /* Controller */,
 			);
-			name = JumpSubViewController;
+			path = JumpSubViewController;
 			sourceTree = "<group>";
 		};
 		419FE4F71D98C2D1008ECAC5 /* Controller */ = {
@@ -211,17 +237,17 @@
 				419FE4F81D98C303008ECAC5 /* JumpViewController.h */,
 				419FE4F91D98C303008ECAC5 /* JumpViewController.m */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		419FE4FB1D98CA35008ECAC5 /* SubViewControllerCountry */ = {
 			isa = PBXGroup;
 			children = (
+				419FE4FC1D98CA98008ECAC5 /* Controller */,
 				4191F8101D991A1400B88EBA /* Model */,
 				4191F8111D991A1E00B88EBA /* View */,
-				419FE4FC1D98CA98008ECAC5 /* Controller */,
 			);
-			name = SubViewControllerCountry;
+			path = SubViewControllerCountry;
 			sourceTree = "<group>";
 		};
 		419FE4FC1D98CA98008ECAC5 /* Controller */ = {
@@ -230,7 +256,24 @@
 				419FE4FD1D98CAC8008ECAC5 /* CountryViewController.h */,
 				419FE4FE1D98CAC8008ECAC5 /* CountryViewController.m */,
 			);
-			name = Controller;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		41CA240E1D9B4F3300AF8EAD /* SubViewCaravan */ = {
+			isa = PBXGroup;
+			children = (
+				41CA240F1D9B4F5E00AF8EAD /* Controller */,
+			);
+			path = SubViewCaravan;
+			sourceTree = "<group>";
+		};
+		41CA240F1D9B4F5E00AF8EAD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				41CA24101D9B4F9100AF8EAD /* CaravanViewController.h */,
+				41CA24111D9B4F9100AF8EAD /* CaravanViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		49D9AF771D92167B0095FB0D = {
@@ -415,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				419FE4FB1D98CA35008ECAC5 /* SubViewControllerCountry */,
+				41CA240E1D9B4F3300AF8EAD /* SubViewCaravan */,
 				49D9AFBC1D9217D30095FB0D /* Controller */,
 				49D9AFBE1D9217D70095FB0D /* Model */,
 				49D9AFBD1D9217D50095FB0D /* View */,
@@ -434,6 +478,8 @@
 		49D9AFBD1D9217D50095FB0D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				419D12A21D9A6E75008C36CF /* FootprintLineTableViewCell.h */,
+				419D12A31D9A6E75008C36CF /* FootprintLineTableViewCell.m */,
 				4945D1D11D9695B40071434E /* PopBournCollectionViewCell.h */,
 				4945D1D21D9695B40071434E /* PopBournCollectionViewCell.m */,
 			);
@@ -454,8 +500,8 @@
 		49D9AFBF1D9217E20095FB0D /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				419FE4F61D98C250008ECAC5 /* JumpSubViewController */,
 				49D9AFC01D9217EC0095FB0D /* Controller */,
+				419FE4F61D98C250008ECAC5 /* JumpSubViewController */,
 				49D9AFC21D9217F00095FB0D /* Model */,
 				49D9AFC11D9217EE0095FB0D /* View */,
 			);
@@ -803,6 +849,7 @@
 				49F5CFA91D938033006DA898 /* SubitemsCollectionViewCell.m in Sources */,
 				4191F81A1D9922A000B88EBA /* TravelInspanModel.m in Sources */,
 				49D9AFF21D9274940095FB0D /* NSString+Categories.m in Sources */,
+				41CA24041D9A8F1100AF8EAD /* FoodprintHeadCollectionViewCell.m in Sources */,
 				49D9AFC91D9218420095FB0D /* NSString+Regex.m in Sources */,
 				49D9AFAD1D9217400095FB0D /* AboutMe.text in Sources */,
 				49D9AFDD1D921AB20095FB0D /* FootprintViewController.m in Sources */,
@@ -813,12 +860,15 @@
 				49D9AF881D92167B0095FB0D /* AppDelegate.m in Sources */,
 				49D9AF851D92167B0095FB0D /* main.m in Sources */,
 				49252C511D93E2430068B48E /* SlideCollectionViewCell.m in Sources */,
+				41CA240D1D9AA48400AF8EAD /* FootPrintTwoCollectionViewCell.m in Sources */,
 				419D12591D994D0E008C36CF /* TravelInspanTableViewCell.m in Sources */,
 				4945D1D61D9698E90071434E /* ContinentModel.m in Sources */,
 				49D9AFE91D924C540095FB0D /* HomeViewController.m in Sources */,
 				49A01AD21D950D980066C1B9 /* AZBaseLabel.m in Sources */,
 				49D9AF911D92167B0095FB0D /* WJQ_ApeTravel.xcdatamodeld in Sources */,
 				49D9AFEC1D9267DA0095FB0D /* HomeTableViewCell.m in Sources */,
+				41CA24071D9AA2A000AF8EAD /* FootprintCollectionTableViewCell.m in Sources */,
+				41CA24011D9A87B600AF8EAD /* LookAllTableViewCell.m in Sources */,
 				49252C4E1D93E1610068B48E /* HomeSlideModel.m in Sources */,
 				49D9AFF51D9274CF0095FB0D /* UIImage+Categories.m in Sources */,
 				49D9AFE61D921AEC0095FB0D /* RegisterViewController.m in Sources */,
@@ -830,11 +880,13 @@
 				4191F8171D99205C00B88EBA /* CityModel.m in Sources */,
 				49D9AFEF1D926ED20095FB0D /* HomeModel.m in Sources */,
 				4939FD901D955A0400FDC0AD /* FootprintPopBournModel.m in Sources */,
+				41CA24121D9B4F9100AF8EAD /* CaravanViewController.m in Sources */,
 				49252C571D940CBB0068B48E /* TabView.m in Sources */,
 				419FE4FA1D98C303008ECAC5 /* JumpViewController.m in Sources */,
 				49D9AFD51D9218560095FB0D /* AZBaseController.m in Sources */,
 				49D9AFE01D921AC00095FB0D /* DiscountViewController.m in Sources */,
 				419FE4FF1D98CAC8008ECAC5 /* CountryViewController.m in Sources */,
+				419D12A41D9A6E75008C36CF /* FootprintLineTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

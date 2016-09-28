@@ -9,7 +9,15 @@
 #import "AZBaseModel.h"
 
 @interface ContinentModel : AZBaseModel
-
+/**
+ *  大洲ID
+ */
+@property (nonatomic, copy) NSString *oblastID;
+/**
+ *  大洲名字
+ */
 @property (nonatomic, copy) NSString *cnname;
+
+//@property (nonatomic, copy) 
 
 @end

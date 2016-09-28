@@ -14,6 +14,10 @@
  */
 @property (nonatomic, copy) NSString *cnname;
 /**
+ *  国家英文
+ */
+@property (nonatomic, copy) NSString *enname;
+/**
  *  简介
  */
 @property (nonatomic, copy) NSString *entryCont;
@@ -21,5 +25,7 @@
  *  轮播图图片
  */
 @property (nonatomic, strong) NSArray *photos;
+
+
 
 @end

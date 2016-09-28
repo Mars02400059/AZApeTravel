@@ -12,7 +12,7 @@
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     if ([key isEqualToString:@"id"]) {
-        _idnumber = (NSString *)value;
+        _countryID = (NSString *)value;
         return;
     }
     [super setValue:value forUndefinedKey:key];

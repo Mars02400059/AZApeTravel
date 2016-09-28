@@ -10,9 +10,14 @@
 
 @implementation ContinentModel
 
-- (void)setCnname:(NSString *)cnname {
-    NSString *str = [NSString stringWithFormat:@"%@热门目的地", cnname];
-    _cnname = str;
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    if ([key isEqualToString:@"id"]) {
+        _oblastID = (NSString *)value;
+        return;
+    }
+    [super setValue:value forUndefinedKey:key];
 }
+
+
 
 @end

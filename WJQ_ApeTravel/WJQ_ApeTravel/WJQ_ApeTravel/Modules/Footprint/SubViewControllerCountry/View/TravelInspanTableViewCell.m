@@ -40,7 +40,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.label = [UILabel new];
-        _label.backgroundColor = [UIColor colorWithWhite:0.680 alpha:1.000];
+        _label.backgroundColor = [UIColor colorWithWhite:0.734 alpha:1.000];
         [self.contentView addSubview:_label];
         
         self.photoImageView = [UIImageView new];

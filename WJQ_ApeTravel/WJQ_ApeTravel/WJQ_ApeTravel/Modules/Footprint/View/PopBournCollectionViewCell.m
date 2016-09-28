@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UILabel *cnnameLabel;
 /// 国家英文名
 @property (nonatomic, strong) UILabel *ennameLabel;
+/// 背景
+@property (nonatomic, strong) UIView *backView;
 /// 国家排名
 @property (nonatomic, strong) UILabel *countLabel;
 /// 城市或旅行地
@@ -44,14 +46,19 @@
         _ennameLabel.font = [UIFont systemFontOfSize:15.f];
         [self.contentView addSubview:_ennameLabel];
         
+        self.backView = [UIView new];
+        _backView.backgroundColor = [UIColor grayColor];
+        [self.contentView addSubview:_backView];
+        
+        
         self.countLabel = [UILabel new];
-        _countLabel.textColor = [UIColor whiteColor];
+        _countLabel.textColor = [UIColor colorWithRed:1.000 green:0.614 blue:0.110 alpha:1.000];
         _countLabel.font = [UIFont systemFontOfSize:25.f];
         _countLabel.textAlignment = NSTextAlignmentRight;
         [self.contentView addSubview:_countLabel];
         
         self.myLabel = [UILabel new];
-        _myLabel.textColor = [UIColor whiteColor];
+        _myLabel.textColor = [UIColor colorWithRed:1.000 green:0.614 blue:0.110 alpha:1.000];
         _myLabel.font = [UIFont systemFontOfSize:18.f];
         _myLabel.textAlignment = NSTextAlignmentRight;
         [self.contentView addSubview:_myLabel];

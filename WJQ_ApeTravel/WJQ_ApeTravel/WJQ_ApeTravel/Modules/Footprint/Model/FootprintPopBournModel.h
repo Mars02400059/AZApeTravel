@@ -20,7 +20,15 @@
 @property (nonatomic, copy) NSString *label;
 /// 图片
 @property (nonatomic, copy) NSString *photo;
+/**
+ *  国家ID
+ */
+@property (nonatomic, copy) NSString *countryID;
+/**
+ *  判断跳转页面的类型, (城市或旅行地)
+ */
+@property (nonatomic, assign) NSInteger flag;
 
-@property (nonatomic, copy) NSString *idnumber;
+
 
 @end

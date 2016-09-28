@@ -13,6 +13,8 @@
 #import "PopBournCollectionViewCell.h"
 #import "ContinentModel.h"
 #import "CountryViewController.h"
+#import "FootprintLineTableViewCell.h"
+#import "CaravanViewController.h"
 
 
 static NSString *const collectionViewCellIndentifier = @"collectionViewCell";
@@ -55,6 +57,10 @@ UICollectionViewDataSource
 @property (nonatomic, strong) UIScrollView *scrollView;
 /// 热门州
 @property (nonatomic, strong) UILabel *popBournLabel;
+/**
+ *  其他州
+ */
+@property (nonatomic, strong) UILabel *elseLabel;
 
 @property (nonatomic, copy) NSString *str;
 @end
@@ -79,16 +85,20 @@ UICollectionViewDataSource
 
 - (void)createMapSubView {
     
+    // 整个界面滑动视图
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64 - 50)];
 #warning 颜色记得改 地图高度self.view.width / 1.8
     _scrollView.backgroundColor = [UIColor whiteColor];
     _scrollView.contentSize = CGSizeMake(0, 1000);
     [self.view addSubview:_scrollView];
+    
+    // 最上部的地图
     UIImageView *mapImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"地图"]];
     mapImageView.userInteractionEnabled = YES;
     mapImageView.frame = CGRectMake(0, 0, self.view.width, self.view.width / 1.8);
     [_scrollView addSubview:mapImageView];
     
+    // 地图表面的蓝魔, 用来做颜色加深
     UILabel *mapLabel = [[UILabel alloc] initWithFrame:mapImageView.bounds];
     mapLabel.backgroundColor = [UIColor colorWithRed:0.178 green:0.728 blue:0.960 alpha:0.350];
     [mapImageView addSubview:mapLabel];
@@ -211,18 +221,22 @@ UICollectionViewDataSource
 
 - (void)createTableViewAndCollectionView {
     
-#warning 高度50
-    self.popBournLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.view.width / 1.8, 200, 50)];
-    _popBournLabel.backgroundColor = [UIColor yellowColor];
+#warning 高度70
+    // 热门国家
+    self.popBournLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.view.width / 1.8, 200, 70)];
+    _popBournLabel.font = [UIFont systemFontOfSize:20.f];
+    _popBournLabel.backgroundColor = [UIColor clearColor];
     [_scrollView addSubview:_popBournLabel];
+    
+    // 热门国家列表
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     CGFloat cellWidth = (self.view.width - 15 * 2 - 10) / 2;
     flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth * 1.3);
     flowLayout.minimumLineSpacing = 10.f;
     flowLayout.minimumInteritemSpacing = 10.f;
     // (15, self.view.width / 1.8, self.view.width - 15 * 2, self.view.width - 64 - 50)
-#warning 前两个的高度和 : self.view.width / 1.8 + 50
-    self.popBournCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, self.view.width / 1.8 + 50, self.view.width - 15 * 2, self.view.width - 64 - 50) collectionViewLayout:flowLayout];
+#warning 前两个的高度和 : self.view.width / 1.8 + 70
+    self.popBournCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, self.view.width / 1.8 + 70, self.view.width - 15 * 2, self.view.width - 64 - 50) collectionViewLayout:flowLayout];
     _popBournCollectionView.backgroundColor = [UIColor whiteColor];
     _popBournCollectionView.dataSource = self;
     _popBournCollectionView.delegate = self;
@@ -230,15 +244,25 @@ UICollectionViewDataSource
     [_scrollView addSubview:_popBournCollectionView];
     [_popBournCollectionView registerClass:[PopBournCollectionViewCell class] forCellWithReuseIdentifier:collectionViewCellIndentifier];
     
-    self.restTableView = [[UITableView alloc] initWithFrame:CGRectMake(15, 0, self.view.width - 15 * 2, self.view.height - 64 - 50) style:UITableViewStylePlain];
-    _restTableView.rowHeight = 40.f;
-    _restTableView.backgroundColor = [UIColor redColor];
+    
+    // 其他国家
+    // 纵坐标时刻在改变
+    self.elseLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.view.width - 15, 60)];
+    _elseLabel.backgroundColor = [UIColor clearColor];
+    _elseLabel.textColor = [UIColor blackColor];
+    _elseLabel.font = [UIFont systemFontOfSize:20.f];
+    _elseLabel.textAlignment = NSTextAlignmentLeft;
+    [_scrollView addSubview:_elseLabel];
+    
+    // 其他国家列表
+    // tableView 纵坐标随collectionView高度变化, 不是固定的
+    self.restTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64 - 50) style:UITableViewStylePlain];
+    _restTableView.rowHeight = 60.f;
     _restTableView.delegate = self;
     _restTableView.dataSource = self;
     [_scrollView addSubview:_restTableView];
     
-//    [_popBournArray removeAllObjects];
-//    [_restArray removeAllObjects];
+#pragma mark - 默认进入亚洲, 初始网络请求
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -248,6 +272,7 @@ UICollectionViewDataSource
             NSArray *dataArray = [responseObject objectForKey:@"data"];
             NSDictionary *dataDic = dataArray[0];
             
+            // 存储当前点击选中大洲
             ContinentModel *continenModel = [[ContinentModel alloc] initWithDic:dataDic];
             [_continentArray addObject:continenModel];
             NSArray *hot_countryArray = [dataDic objectForKey:@"hot_country"];
@@ -262,7 +287,8 @@ UICollectionViewDataSource
                 [_restArray addObject:restModel];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+#warning 热门目的地
+
                 // 刷新
                 [_popBournCollectionView reloadData];
                 [_restTableView reloadData];
@@ -277,29 +303,38 @@ UICollectionViewDataSource
     });
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    CountryViewController *countryVC = [[CountryViewController alloc] init];
-    FootprintPopBournModel *popBournModel = _popBournArray[indexPath.row];
-    countryVC.number = popBournModel.idnumber;
-    [self.navigationController pushViewController:countryVC animated:YES];
-}
+
+
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    for (int i = 0; i < _continentArray.count; i++) {
+        ContinentModel *continentModel = _continentArray[i];
+        _popBournLabel.text = [NSString stringWithFormat:@"%@热门目的地", continentModel.cnname];
+        
+    }
     
     NSInteger count = _popBournArray.count;
     
     CGFloat height = (self.view.width - 15 * 2 - 10) / 2 * 1.3;
     // collectionView 的高度
     _popBournCollectionView.height = height * (count / 2 + count % 2) + (count / 2 + count % 2 - 1) * 10;
-    _restTableView.y = self.view.width / 1.8 + 50 + _popBournCollectionView.height;
+    if (_restArray.count > 0) {
+        _elseLabel.y = self.view.width / 1.8 + 70 + _popBournCollectionView.height;
+        for (int i = 0; i < _continentArray.count; i++) {
+            ContinentModel *continentModel = _continentArray[i];
+            _elseLabel.text = [NSString stringWithFormat:@"%@其他目的地 (拼音首字母排序)", continentModel.cnname];
+            
+        }
+        
+    }
+    // 设置tableView纵坐标
+    _restTableView.y = self.view.width / 1.8 + 70 + 60 + _popBournCollectionView.height;
     NSInteger tableCount = _restArray.count;
-    _restTableView.height = 40 * tableCount;
+    _restTableView.height = 60 * tableCount;
     
-    _scrollView.contentSize = CGSizeMake(0, self.view.width / 1.8 + 50 + _popBournCollectionView.height + _restTableView.height);
-//    ContinentModel *continentModel = _continentArray[0];
-//    _popBournLabel.text = continentModel.cnname;
-    
-//NSLog(@"数组长度 %ld", _popBournArray.count);
+    _scrollView.contentSize = CGSizeMake(0, self.view.width / 1.8 + 70 + 60 + _popBournCollectionView.height + _restTableView.height);
+
     return _popBournArray.count;
 }
 
@@ -309,25 +344,73 @@ UICollectionViewDataSource
     FootprintPopBournModel *popBournModel = _popBournArray[indexPath.row];
     cell.popBournModel = popBournModel;
 
-//
+
     return cell;
 }
+// collectionView 页面跳转
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    FootprintPopBournModel *popBournModel = _popBournArray[indexPath.row];
+    ContinentModel *continentModel = _continentArray[0];
+    if (popBournModel.flag == 1) {
+        CountryViewController *countryVC = [[CountryViewController alloc] init];
+        
+        // 选择的大洲
+        countryVC.oblastID = continentModel.oblastID;
+        // 点击的国家
+        countryVC.countryID = popBournModel.countryID;
+        [self.navigationController pushViewController:countryVC animated:YES];
+    } else {
+        CaravanViewController *caravanVc = [[CaravanViewController alloc] init];
+        
+        [self.navigationController pushViewController:caravanVc animated:YES];
+    }
 
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return _restArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [_restTableView dequeueReusableCellWithIdentifier:tableViewCellIndentifier];
+    
+    
+   
+    FootprintLineTableViewCell *cell = [_restTableView dequeueReusableCellWithIdentifier:tableViewCellIndentifier];
     if (nil == cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:tableViewCellIndentifier];
+        cell = [[FootprintLineTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:tableViewCellIndentifier];
     }
     FootprintPopBournModel *restModel = _restArray[indexPath.row];
     
     cell.textLabel.text = restModel.cnname;
+    cell.detailTextLabel.text = restModel.enname;
+    cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.627 alpha:1.000];
     return cell;
+    
+    
 }
+// tableView页面跳转
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    FootprintPopBournModel *restModel = _restArray[indexPath.row];
+    ContinentModel *continentModel = _continentArray[0];
+    if (restModel.flag == 1) {
+        CountryViewController *countryVC = [[CountryViewController alloc] init];
+        
+        // 选择的大洲
+        countryVC.oblastID = continentModel.oblastID;
+        // 点击的国家
+        countryVC.countryID = restModel.countryID;
+        [self.navigationController pushViewController:countryVC animated:YES];
+    } else {
+        CaravanViewController *caravanVc = [[CaravanViewController alloc] init];
+        
+        [self.navigationController pushViewController:caravanVc animated:YES];
+
+    
+    }
+    
+}
+
 
 // 北美洲点击事件
 - (void)northAmericaButtonAction:(AZBaseButton *)northAmericaButton {
@@ -398,10 +481,10 @@ UICollectionViewDataSource
         [AZBaseButton setBackgroundImage:[UIImage imageNamed:@"按压后气泡"] forState:UIControlStateNormal];
         [AZBaseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         AZBaseButton.click = NO;
-        
+        [_continentArray removeAllObjects];
         [_popBournArray removeAllObjects];
         [_restArray removeAllObjects];
-        
+#pragma mark - 点击按钮换取大洲, 刷新网络请求
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             NSString *url = @"http://open.qyer.com/qyer/footprint/continent_list?client_id=qyer_android&client_secret=9fcaae8aefc4f9ac4915&v=1&track_deviceid=A1000052A2BCDD&track_app_version=7.0.2&track_app_channel=baidu&track_device_info=PD1524B&track_os=Android5.1&app_installtime=1474192132493";
@@ -410,9 +493,16 @@ UICollectionViewDataSource
                 for (NSDictionary *dataDic in dataArray) {
                     
                     if ([AZBaseButton.number isEqualToNumber:[dataDic objectForKey:@"id"]]) {
+                        
+                        // 存储当前点击选中大洲
+                        ContinentModel *continetModel = [[ContinentModel alloc] initWithDic:dataDic];
+                        
+                        [_continentArray addObject:continetModel];
+                        
                         NSArray *hot_countryArray = [dataDic objectForKey:@"hot_country"];
                         for (NSDictionary *hot_countryDic in hot_countryArray) {
                             FootprintPopBournModel *popBournModel = [[FootprintPopBournModel alloc] initWithDic:hot_countryDic];
+                            
                             [_popBournArray addObject:popBournModel];
                             
                         }
@@ -429,17 +519,13 @@ UICollectionViewDataSource
                             [_restTableView reloadData];
                             
                         });
-
-                        
                     }
                     
                 }
                 
-                
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"error : %@", error);
             }];
-            
             
         });
 

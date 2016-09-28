@@ -252,7 +252,12 @@ UIScrollViewDelegate
 - (void)timerAction:(NSTimer *)timer {
     NSInteger number = _collectionView.contentOffset.x / _collectionView.width;
     // 当前图片为第几张图片
-    NSInteger pageNumber = (number + 1) % _collectionViewArray.count;
+    
+    NSInteger pageNumber = 0;
+    if (0 != _collectionViewArray.count) {
+        pageNumber = (number + 1) % _collectionViewArray.count;
+    }
+    
     
     [_collectionView setContentOffset:CGPointMake((number + 1) * _collectionView.width, 0) animated:YES];
     if (pageNumber == 0) {
@@ -328,14 +333,6 @@ UIScrollViewDelegate
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HomeModel *homeModel = _tableViewArray[indexPath.row];
-    
-//    static NSString *const cell2Indetofier = @"cell2";
-//    HomeTwoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell2Indetofier];
-//    if (nil == cell) {
-//        cell = [[HomeTwoTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cell2Indetofier];
-//    }
-//    cell.homeModel = homeModel;
-//    return cell;
     
     //http://pic.qyer.com/public/2016/09/23/57e4aa191e27c.jpg?imageView2/1/w/800/h/450/format/webp/710x360
     
