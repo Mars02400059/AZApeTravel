@@ -1,5 +1,5 @@
 //
-//  CaravanViewController.h
+//  TravelSiteViewController.h
 //  WJQ_ApeTravel
 //
 //  Created by mars on 16/9/28.
@@ -8,6 +8,8 @@
 
 #import "AZBaseController.h"
 
-@interface CaravanViewController : AZBaseController
+@interface TravelSiteViewController : AZBaseController
+
+@property (nonatomic, copy) NSString *city_id;
 
 @end

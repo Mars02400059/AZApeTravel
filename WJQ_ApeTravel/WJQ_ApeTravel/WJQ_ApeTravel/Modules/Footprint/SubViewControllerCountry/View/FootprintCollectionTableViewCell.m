@@ -63,6 +63,13 @@ UICollectionViewDataSource
     [_collectionView reloadData];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    CityModel *cityModel = _hot_cityArray[indexPath.row];
+
+    [self.delegate AZ_SelectedIDNumber:cityModel.idNumber];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _hot_cityArray.count;
 }

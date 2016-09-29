@@ -8,9 +8,17 @@
 
 #import "AZBaseView.h"
 
+@protocol CommendViewDelegate <NSObject>
+
+- (void)AZ_DeliverCity_ID:(NSString *)city_id;
+
+@end
+
 @interface CommendView : AZBaseView
 
 
 @property (nonatomic, strong) NSDictionary *dataDic;
+
+@property (nonatomic, assign) id<CommendViewDelegate>delegate;
 
 @end

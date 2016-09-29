@@ -14,7 +14,7 @@
 #import "ContinentModel.h"
 #import "CountryViewController.h"
 #import "FootprintLineTableViewCell.h"
-#import "CaravanViewController.h"
+#import "TravelSiteViewController.h"
 
 
 static NSString *const collectionViewCellIndentifier = @"collectionViewCell";
@@ -71,6 +71,9 @@ UICollectionViewDataSource
     self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
+//    self.navigationController.navigationBar.subviews.firstObject.alpha = 1;
+    
+
 }
 
 - (void)viewDidLoad {
@@ -86,7 +89,7 @@ UICollectionViewDataSource
 - (void)createMapSubView {
     
     // 整个界面滑动视图
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64 - 50)];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
 #warning 颜色记得改 地图高度self.view.width / 1.8
     _scrollView.backgroundColor = [UIColor whiteColor];
     _scrollView.contentSize = CGSizeMake(0, 1000);
@@ -342,6 +345,10 @@ UICollectionViewDataSource
 }
 // collectionView 页面跳转
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
+    _scrollView.frame = CGRectMake(0, 64, self.view.width, self.view.height);
+    
     FootprintPopBournModel *popBournModel = _popBournArray[indexPath.row];
     ContinentModel *continentModel = _continentArray[0];
     if (popBournModel.flag == 1) {
@@ -353,9 +360,9 @@ UICollectionViewDataSource
         countryVC.countryID = popBournModel.countryID;
         [self.navigationController pushViewController:countryVC animated:YES];
     } else {
-        CaravanViewController *caravanVc = [[CaravanViewController alloc] init];
-        
-        [self.navigationController pushViewController:caravanVc animated:YES];
+        TravelSiteViewController *travelSiteView = [[TravelSiteViewController alloc] init];
+        travelSiteView.city_id = popBournModel.countryID;
+        [self.navigationController pushViewController:travelSiteView animated:YES];
     }
 
 }
@@ -384,6 +391,10 @@ UICollectionViewDataSource
 // tableView页面跳转
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
+    _scrollView.frame = CGRectMake(0, 64, self.view.width, self.view.height);
+    
     FootprintPopBournModel *restModel = _restArray[indexPath.row];
     ContinentModel *continentModel = _continentArray[0];
     if (restModel.flag == 1) {
@@ -395,9 +406,9 @@ UICollectionViewDataSource
         countryVC.countryID = restModel.countryID;
         [self.navigationController pushViewController:countryVC animated:YES];
     } else {
-        CaravanViewController *caravanVc = [[CaravanViewController alloc] init];
-        
-        [self.navigationController pushViewController:caravanVc animated:YES];
+        TravelSiteViewController *travelSiteVC = [[TravelSiteViewController alloc] init];
+        travelSiteVC.city_id = restModel.countryID;
+        [self.navigationController pushViewController:travelSiteVC animated:YES];
 
     
     }

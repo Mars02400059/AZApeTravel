@@ -16,7 +16,7 @@
 #import "SlideCollectionViewCell.h"
 #import "CommendView.h"
 #import "JumpViewController.h"
-
+#import "TravelSiteViewController.h"
 static NSString *const collectionCell = @"cell";
 
 
@@ -26,7 +26,8 @@ UITableViewDelegate,
 UITableViewDataSource,
 UICollectionViewDelegate,
 UICollectionViewDataSource,
-UIScrollViewDelegate
+UIScrollViewDelegate,
+CommendViewDelegate
 >
 @property (nonatomic, strong) NSMutableArray *tableViewArray;
 @property (nonatomic, strong) UITableView *tableView;
@@ -45,6 +46,7 @@ UIScrollViewDelegate
 @implementation HomeViewController
 // 视图将要出现
 - (void)viewWillAppear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.hidden = YES;
     self.use = YES;
 }
@@ -53,7 +55,6 @@ UIScrollViewDelegate
 
 
     if (_tableView.contentOffset.y >= (_collectionView.height) && _use == YES) {
-        NSLog(@"hahahhah");
         [UIView animateWithDuration:0.01 animations:^{
             _use = NO;
             self.navigationController.navigationBar.hidden = NO;
@@ -82,7 +83,7 @@ UIScrollViewDelegate
     
 }
 
-// 动画,
+
 
 
 - (void)createSubView {
@@ -112,7 +113,10 @@ UIScrollViewDelegate
 
 - (void)createSlideView {
 #warning 高度要改
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tableView.bounds.size.width, 780)];
+    
+    // 最后一个图片高度60 y 5
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tableView.width, _tableView.width / 2 + 55 + 10 + _tableView.width - 65 + 40 + 10 + 50)];
+    
     headerView.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.000];
     _tableView.tableHeaderView = headerView;
     
@@ -161,10 +165,11 @@ UIScrollViewDelegate
     
 #pragma mark - 头视图推荐部分
     
-    CGFloat commendViewY = _collectionView.bounds.size.height + 80;
+    CGFloat commendViewY = _collectionView.bounds.size.height + 65;
     CGFloat commendViewWidth = headerView.bounds.size.width - 10 * 2;
-    CGFloat commendViewHeihet = headerView.bounds.size.width - 50;
+    CGFloat commendViewHeihet = headerView.bounds.size.width - 65;
     CommendView *commendView = [[CommendView alloc] initWithFrame:CGRectMake(10, commendViewY, commendViewWidth, commendViewHeihet)];
+    commendView.delegate = self;
     commendView.layer.cornerRadius = 7.f;
     [commendView.layer setBorderWidth:1.0f];
     commendView.layer.borderColor = [UIColor colorWithWhite:0.736 alpha:1.000].CGColor;
@@ -183,9 +188,7 @@ UIScrollViewDelegate
     
     // 没有用的, 观赏图
     UIImageView *poraryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"占位"]];
-    poraryImageView.center = CGPointMake(_tableView.width / 2 - 20, headerView.height - 40);
-    poraryImageView.width = 80.f;
-    poraryImageView.height = 60.f;
+    poraryImageView.frame = CGRectMake((headerView.width - 80) / 2, downView.y + downView.height + 5, 80, 60);
     [headerView addSubview:poraryImageView];
     
     
@@ -218,7 +221,15 @@ UIScrollViewDelegate
     });
 
 }
+#pragma mark - 协议传值, 跳转页面
 
+- (void)AZ_DeliverCity_ID:(NSString *)city_id {
+    
+    TravelSiteViewController *travelSiteVC = [[TravelSiteViewController alloc] init];
+    travelSiteVC.city_id = city_id;
+    [self.navigationController pushViewController:travelSiteVC animated:YES];
+    
+}
 
 #pragma mark - 轮播图
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

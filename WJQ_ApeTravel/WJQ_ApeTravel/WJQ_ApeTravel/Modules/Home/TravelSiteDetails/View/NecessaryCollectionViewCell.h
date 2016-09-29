@@ -1,0 +1,15 @@
+//
+//  NecessaryCollectionViewCell.h
+//  WJQ_ApeTravel
+//
+//  Created by mars on 16/9/28.
+//  Copyright © 2016年 Mars02400059. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface NecessaryCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, strong) Local_BasicModel *local_basicModel;
+
+@end

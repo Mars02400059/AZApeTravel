@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FootprintCollectionTableViewCellDelegate <NSObject>
+
+- (void)AZ_SelectedIDNumber:(NSString *)idNumber;
+
+@end
+
 @interface FootprintCollectionTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NSArray *hot_cityArray;
+
+@property (nonatomic, assign) id<FootprintCollectionTableViewCellDelegate>delegate;
 
 @end

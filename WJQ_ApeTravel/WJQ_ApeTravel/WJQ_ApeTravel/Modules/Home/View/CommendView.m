@@ -9,6 +9,8 @@
 #import "CommendView.h"
 #import "TabView.h"
 
+
+
 @interface CommendView ()
 
 @property (nonatomic, strong) UIImageView *coverImageView;
@@ -33,9 +35,17 @@
 }
 
 - (void)createSubView {
-    self.coverImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.width / 2.3)];
-
+    self.coverImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.width / 3 + 10)];
+    _coverImageView.userInteractionEnabled = YES;
     [self addSubview:_coverImageView];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    // 设置需要轻拍的次数
+    tap.numberOfTapsRequired = 1;
+    
+    // 视图添加一个手势
+    [_coverImageView addGestureRecognizer:tap];
+
+    
     // 添加模糊效果
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
@@ -47,7 +57,7 @@
     _titleLabel.width = 60.f;
     _titleLabel.font = [UIFont systemFontOfSize:15.f];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.center = CGPointMake(_coverImageView.bounds.size.width / 2, 40);
+    _titleLabel.center = CGPointMake(_coverImageView.bounds.size.width / 2, 25);
     _titleLabel.textColor = [UIColor colorWithWhite:0.693 alpha:1.000];
     effectView.frame = _coverImageView.frame;
     [_coverImageView addSubview:_titleLabel];
@@ -61,15 +71,19 @@
     _city_nameLabel.textAlignment = NSTextAlignmentCenter;
     [_coverImageView addSubview:_city_nameLabel];
     
+    
+    
     for (int i = 0; i < 4; i++) {
-        TabView *tabView = [[TabView alloc] initWithFrame:CGRectMake(i * (self.bounds.size.width / 4), _coverImageView.bounds.size.height, self.bounds.size.width / 4, self.bounds.size.width / 4)];
+        TabView *tabView = [[TabView alloc] initWithFrame:CGRectMake(i * (self.width / 4), _coverImageView.height, self.width / 4, self.height / 3)];
         tabView.tag = 1000 + i;
         [self addSubview:tabView];
     }
 
 #pragma mark - 更多城市三个Label
-    UILabel *moreCityLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.bounds.size.width - 100) / 2, _coverImageView.bounds.size.height + self.bounds.size.width / 4 + 10, 100, 20)];
+    UILabel *moreCityLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.bounds.size.width - 100) / 2, _coverImageView.height + self.width / 4, 100, 20)];
     moreCityLabel.text = @"更多城市";
+    moreCityLabel.font = [UIFont systemFontOfSize:14.f];
+    moreCityLabel.textColor = [UIColor grayColor];
     moreCityLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:moreCityLabel];
     
@@ -86,7 +100,7 @@
     for (int i = 0; i < 3; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.titleLabel.font = [UIFont systemFontOfSize:15.f];
-        button.layer.cornerRadius = 17.5f;
+        button.layer.cornerRadius = 15.f;
         button.backgroundColor = [UIColor whiteColor];
         [button setTitleColor:[UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000] forState:UIControlStateNormal];
         button.layer.borderColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000].CGColor;
@@ -94,7 +108,9 @@
         
         button.tag = 1500 + i;
         CGFloat width = (_coverImageView.bounds.size.width - 10 * 2 - 15 * 2) / 3;
-        button.frame = CGRectMake(15 + i * (width + 10), _coverImageView.bounds.size.height + self.bounds.size.width / 4 + moreCityLabel.bounds.size.height + 25, width, 35);
+        // 上面所有视图的高度和
+        CGFloat upHeight = _coverImageView.height + self.width / 4;
+        button.frame = CGRectMake(15 + i * (width + 10), upHeight + (self.height - upHeight - 30) / 2, width, 30);
         [self addSubview:button];
         
     }
@@ -102,6 +118,15 @@
     
     
 }
+
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+    
+    NSNumber *num = [_dataDic objectForKey:@"city_id"];
+    NSString *city_id = [NSString stringWithFormat:@"%@", num];
+    [self.delegate AZ_DeliverCity_ID:city_id];
+    
+}
+
 
 - (void)setDataDic:(NSDictionary *)dataDic {
     _dataDic = dataDic;

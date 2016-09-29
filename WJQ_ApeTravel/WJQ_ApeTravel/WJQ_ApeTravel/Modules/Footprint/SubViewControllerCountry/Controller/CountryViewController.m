@@ -25,7 +25,8 @@ UITableViewDelegate,
 UITableViewDataSource,
 UIScrollViewDelegate,
 UICollectionViewDelegate,
-UICollectionViewDataSource
+UICollectionViewDataSource,
+FootprintCollectionTableViewCellDelegate
 >
 
 
@@ -77,9 +78,18 @@ UICollectionViewDataSource
 @implementation CountryViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-//    self.navigationController.navigationBar.hidden = YES;
+    
+    /**
+     * 导航栏效果
+     */
+    self.navigationController.navigationBar.hidden = YES;
+    //    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.hidden = YES;
     self.use = YES;
+
+    // 调整透明度
+//    self.navigationController.navigationBar.subviews.firstObject.alpha = 0;
+
 }
 
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -103,9 +113,13 @@ UICollectionViewDataSource
 //    }
 //    
 //}
+// 页面完全出现
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     self.modelArray = [NSMutableArray array];
     self.cityInfoArray = [NSMutableArray array];
@@ -113,14 +127,14 @@ UICollectionViewDataSource
     self.collectionViewArray = [NSMutableArray array];
     
     // 整个界面的tableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64 - 50) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 50) style:UITableViewStylePlain];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [self.view addSubview:_tableView];
     
 #pragma mark - 已登录相关的底部按钮
     // tableView下方的按钮
-    self.buttonView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.height - 64 - 50, self.view.width, 50)];
+    self.buttonView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.height - 50, self.view.width, 50)];
     _buttonView.backgroundColor = [UIColor cyanColor];
     [self.view addSubview:_buttonView];
     
@@ -302,6 +316,7 @@ UICollectionViewDataSource
             if (nil == cell) {
                 cell = [[FootprintCollectionTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell1"];
             }
+            cell.delegate = self;
             cell.hot_cityArray = _cityInfoArray;
             return cell;
         }
@@ -351,6 +366,12 @@ UICollectionViewDataSource
     }
     
     
+}
+
+- (void)AZ_SelectedIDNumber:(NSString *)idNumber {
+    TravelSiteViewController *travelSiteVC = [[TravelSiteViewController alloc] init];
+    travelSiteVC.city_id = idNumber;
+    [self.navigationController pushViewController:travelSiteVC animated:YES];
 }
 
 #pragma mark - 轮播图

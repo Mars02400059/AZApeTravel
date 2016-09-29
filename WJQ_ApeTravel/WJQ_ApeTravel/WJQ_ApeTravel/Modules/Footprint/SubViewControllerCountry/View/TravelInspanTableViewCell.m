@@ -54,9 +54,6 @@
         [self.contentView addSubview:_titleLabel];
         
         self.priceoffLabel = [UILabel new];
-        _priceoffLabel.font = [UIFont systemFontOfSize:13.f];
-        _priceLabel.textAlignment = NSTextAlignmentLeft;
-        _priceoffLabel.textColor = [UIColor grayColor];
         [self.contentView addSubview:_priceoffLabel];
         
         self.priceLabel = [UILabel new];
@@ -84,6 +81,7 @@
     _priceLabel.textColor = [UIColor colorWithRed:1.000 green:0.562 blue:0.218 alpha:1.000];
     _priceLabel.textAlignment = NSTextAlignmentRight;
     _priceLabel.font = [UIFont systemFontOfSize:15.f];
+
     
 }
 

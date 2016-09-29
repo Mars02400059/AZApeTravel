@@ -17,4 +17,10 @@
 #import "UIImageView+WebCache.h"
 #import "UIView+Frame.h"
 
+#import "Not_MissModel.h"
+#import "Most_PopularModel.h"
+#import "Local_BasicModel.h"
+#import "TravelSiteViewController.h"
+
+
 #endif /* PrefixHeader_pch */

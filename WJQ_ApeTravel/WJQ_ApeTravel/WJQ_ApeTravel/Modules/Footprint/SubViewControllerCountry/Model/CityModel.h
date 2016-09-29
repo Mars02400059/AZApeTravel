@@ -11,6 +11,10 @@
 @interface CityModel : AZBaseModel
 
 /**
+ *  城市ID
+ */
+@property (nonatomic, copy) NSString *idNumber;
+/**
  *  城市名
  */
 @property (nonatomic, copy) NSString *cnname;
