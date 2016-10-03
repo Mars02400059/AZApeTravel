@@ -16,4 +16,6 @@
 
 @property (nonatomic, copy) NSString *photo;
 
+@property (nonatomic, assign) CGFloat score;
+
 @end

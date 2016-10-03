@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) UIImageView *pic_urlImageView;
 
+@property (nonatomic, strong) UIVisualEffectView *effectView;
+
 @property (nonatomic, strong) UILabel *nameLabel;
 
 @property (nonatomic, strong) UILabel *descLabel;
@@ -32,8 +34,13 @@
 //        [self.contentView addSubview:_backLabel];
         
         self.pic_urlImageView = [UIImageView new];
-        _pic_urlImageView.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_pic_urlImageView];
+        // 设置模糊效果
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        self.effectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        _effectView.alpha = 0.4f;
+        [_pic_urlImageView addSubview:_effectView];
+        
         
         self.nameLabel = [UILabel new];
         _nameLabel.textColor = [UIColor whiteColor];
@@ -55,7 +62,6 @@
 
 - (void)setNot_missModel:(Not_MissModel *)not_missModel {
     _not_missModel = not_missModel;
-    NSLog(@"%@", not_missModel);
     NSURL *url = [NSURL URLWithString:not_missModel.pic_url];
     [_pic_urlImageView sd_setImageWithURL:url];
     
@@ -73,12 +79,13 @@
 
 //    _backLabel.frame = CGRectMake(0, 0, self.contentView.width, 10);
     _pic_urlImageView.frame = CGRectMake(0, 0, self.contentView.width, self.contentView.width * 0.5);
-  
+    _effectView.frame = _pic_urlImageView.bounds;
+
+    
+    
     _nameLabel.frame = CGRectMake(0, (_pic_urlImageView.height -  30) / 2, self.contentView.width, 30);
     
     _descLabel.frame = CGRectMake(25, _pic_urlImageView.height, self.contentView.width - 25 * 2, 70);
-#warning 模糊效果
-    // 设置模糊效果
     
     
     

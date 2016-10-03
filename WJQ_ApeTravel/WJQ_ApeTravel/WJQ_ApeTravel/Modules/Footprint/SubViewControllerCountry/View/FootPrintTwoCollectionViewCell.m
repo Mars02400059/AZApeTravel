@@ -18,6 +18,8 @@
  *  <#Description#>
  */
 @property (nonatomic, strong) UIImageView *slideImageView;
+@property (nonatomic, strong) UIVisualEffectView *effectView;
+
 @property (nonatomic, strong) UILabel *cityLabel;
 @property (nonatomic, strong) UILabel *cityEnglishLabel;
 
@@ -30,9 +32,18 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        
+        
         self.backgroundColor = [UIColor redColor];
         self.slideImageView = [UIImageView new];
         [self.contentView addSubview:_slideImageView];
+        
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        self.effectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        _effectView.alpha = 0.4f;
+        [_slideImageView addSubview:_effectView];
+        
         
         self.cityLabel = [UILabel new];
         _cityLabel.textColor = [UIColor whiteColor];
@@ -64,6 +75,8 @@
     [super layoutSubviews];
     _slideImageView.frame = self.contentView.frame;
     _cityLabel.frame = CGRectMake(0, self.contentView.height / 3, self.contentView.width, 30);
+    _effectView.frame = _slideImageView.bounds;
+
     _cityEnglishLabel.frame = CGRectMake(0, self.contentView.height / 5 * 3, self.contentView.width, 17);
     
 }

@@ -47,9 +47,10 @@
 
     
     // 添加模糊效果
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    effectView.alpha = 0.35f;
+    effectView.frame = _coverImageView.bounds;
+    effectView.alpha = 0.5f;
     [_coverImageView addSubview:effectView];
     
     self.titleLabel = [[UILabel alloc] init];
@@ -58,7 +59,7 @@
     _titleLabel.font = [UIFont systemFontOfSize:15.f];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.center = CGPointMake(_coverImageView.bounds.size.width / 2, 25);
-    _titleLabel.textColor = [UIColor colorWithWhite:0.693 alpha:1.000];
+    _titleLabel.textColor = [UIColor colorWithWhite:0.850 alpha:1.000];
     effectView.frame = _coverImageView.frame;
     [_coverImageView addSubview:_titleLabel];
     

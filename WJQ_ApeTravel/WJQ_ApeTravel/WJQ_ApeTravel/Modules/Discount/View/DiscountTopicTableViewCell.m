@@ -55,8 +55,6 @@ UITableViewDataSource
         [self.contentView addSubview:_listTableView];
         
         self.headerImageView = [UIImageView new];
-        _headerImageView.backgroundColor = [UIColor yellowColor];
-//        [self.contentView addSubview:_headerView];
         
         self.myButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_myButton setTitleColor:[UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000] forState:UIControlStateNormal];

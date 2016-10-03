@@ -37,7 +37,7 @@ CommendViewDelegate
 // 定时器
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) NSMutableArray *collectionViewArray;
-
+@property (nonatomic, strong) CommendView *commendView;
 // 时候可以执行动画
 @property (nonatomic, assign) BOOL use;
 
@@ -52,8 +52,16 @@ CommendViewDelegate
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
-
+    
+    if (_tableView.contentOffset.y <= -50) {
+        
+        NSLog(@"刷新数据");
+    }
+    
+    if (_tableView.contentOffset.y + _tableView.height - _tableView.contentSize.height >= 50) {
+        
+        NSLog(@"加载数据");
+    }
     if (_tableView.contentOffset.y >= (_collectionView.height) && _use == YES) {
         [UIView animateWithDuration:0.01 animations:^{
             _use = NO;
@@ -77,11 +85,17 @@ CommendViewDelegate
     [super viewDidLoad];
     /// 在视图将要出现时写navigationBar状态
 //    self.navigationController.navigationBar.hidden = NO;
+    
+    
+    
+
+    
     [self createSubView];
     
     
     
 }
+
 
 
 
@@ -100,14 +114,14 @@ CommendViewDelegate
     
     self.tableViewArray = [NSMutableArray array];
     
+    
     // 网络请求 + 解析数据
     
     [self asyncLoadData:@"http://open.qyer.com/qyer/home/home_feed?client_id=qyer_android&client_secret=9fcaae8aefc4f9ac4915&v=1&track_deviceid=A1000052A2BCDD&track_app_version=7.0.2&track_app_channel=baidu&track_device_info=PD1524B&track_os=Android5.1&app_installtime=1474192132493&page=1"];
-    
-
 
 
 }
+
 
 #pragma mark - 头视图部分
 
@@ -168,20 +182,20 @@ CommendViewDelegate
     CGFloat commendViewY = _collectionView.bounds.size.height + 65;
     CGFloat commendViewWidth = headerView.bounds.size.width - 10 * 2;
     CGFloat commendViewHeihet = headerView.bounds.size.width - 65;
-    CommendView *commendView = [[CommendView alloc] initWithFrame:CGRectMake(10, commendViewY, commendViewWidth, commendViewHeihet)];
-    commendView.delegate = self;
-    commendView.layer.cornerRadius = 7.f;
-    [commendView.layer setBorderWidth:1.0f];
-    commendView.layer.borderColor = [UIColor colorWithWhite:0.736 alpha:1.000].CGColor;
-    commendView.backgroundColor = [UIColor whiteColor];
-    [headerView addSubview:commendView];
+    self.commendView = [[CommendView alloc] initWithFrame:CGRectMake(10, commendViewY, commendViewWidth, commendViewHeihet)];
+    _commendView.delegate = self;
+    _commendView.layer.cornerRadius = 7.f;
+    [_commendView.layer setBorderWidth:1.0f];
+    _commendView.layer.borderColor = [UIColor colorWithWhite:0.736 alpha:1.000].CGColor;
+    _commendView.backgroundColor = [UIColor whiteColor];
+    [headerView addSubview:_commendView];
     
 #pragma mark - 点评, 需要登录
     
     UIView *downView = [[UIView alloc] init];
     downView.x = 10;
     downView.y = commendViewY + commendViewHeihet + 10;
-    downView.width = commendView.width;
+    downView.width = _commendView.width;
     downView.height = 40;
     downView.backgroundColor = [UIColor redColor];
     [headerView addSubview:downView];
@@ -192,10 +206,25 @@ CommendViewDelegate
     [headerView addSubview:poraryImageView];
     
     
-    
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector()];
+    //默认【上拉加载】
+//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
 
     
-    
+    [self getNetworkData];
+}
+
+//-(void)refresh
+//{
+//    [self getNetworkData];
+//    //    [self ];
+//}
+//-(void)loadMore
+//{
+//    //    [self];
+//}
+
+- (void)getNetworkData {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         
@@ -206,7 +235,7 @@ CommendViewDelegate
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                commendView.dataDic = [responseObject objectForKey:@"data"];
+                _commendView.dataDic = [responseObject objectForKey:@"data"];
                 
                 
             });
@@ -215,12 +244,11 @@ CommendViewDelegate
             
         }];
         
-        
-    
-        
     });
-
 }
+
+
+
 #pragma mark - 协议传值, 跳转页面
 
 - (void)AZ_DeliverCity_ID:(NSString *)city_id {
@@ -355,7 +383,6 @@ CommendViewDelegate
         if (nil == cell) {
             cell = [[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cell1Indetofier];
         }
-        NSLog(@"%@", homeModel.cover);
         
         cell.homeModel = homeModel;
         return cell;
@@ -435,6 +462,7 @@ CommendViewDelegate
         
     });
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

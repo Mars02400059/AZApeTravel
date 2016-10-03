@@ -68,6 +68,7 @@ UICollectionViewDataSource
 @implementation FootprintViewController
 
 - (void)viewDidAppear:(BOOL)animated {
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];

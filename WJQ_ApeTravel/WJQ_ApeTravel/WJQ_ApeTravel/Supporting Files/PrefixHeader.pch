@@ -13,10 +13,11 @@
 #import <Foundation/Foundation.h>
 
 #import <AFNetworking.h>
-
+#import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
 #import "UIView+Frame.h"
 
+#import "ReisterSubsLoginViewController.h"
 #import "Not_MissModel.h"
 #import "Most_PopularModel.h"
 #import "Local_BasicModel.h"
@@ -30,13 +31,13 @@
 
 #import "FootPrintTwoCollectionViewCell.h"
 #import "HotArea.h"
-
+#import "AZBaseTextField.h"
 #import "DiscountTopic.h"
 #import "DiscountTopicListModel.h"
 #import "DiscountTopicTopicModel.h"
 #import "DiscountTopicTableViewCell.h"
 #import "HotGoodsModel.h"
 #import "HotGoodTableViewCell.h"
-
-
+#import "RegisterSubsViewController.h"
+#import "AZUnderlineButton.h"
 #endif /* PrefixHeader_pch */

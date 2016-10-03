@@ -321,7 +321,7 @@ FootprintCollectionTableViewCellDelegate
             return cell;
         }
         
-    // 当存储超值自由行的数组不为空时, tableView有5个Cell
+    // 当存储超值自由行的数组不为空时, tableView有n个Cell
 
     } else {
         

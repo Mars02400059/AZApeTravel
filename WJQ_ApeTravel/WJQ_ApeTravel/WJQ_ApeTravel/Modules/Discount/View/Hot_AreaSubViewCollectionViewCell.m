@@ -11,6 +11,9 @@
 @interface Hot_AreaSubViewCollectionViewCell ()
 
 @property (nonatomic, strong) UIImageView *slideImageView;
+
+@property (nonatomic, strong) UIVisualEffectView *effectView;
+
 @property (nonatomic, strong) UILabel *cityLabel;
 
 @end
@@ -27,9 +30,14 @@
         _slideImageView.clipsToBounds = YES;
         [self.contentView addSubview:_slideImageView];
         
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        self.effectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        _effectView.alpha = 0.4f;
+        [_slideImageView addSubview:_effectView];
+        
         self.cityLabel = [UILabel new];
         _cityLabel.textColor = [UIColor whiteColor];
-        _cityLabel.font = [UIFont systemFontOfSize:14.f];
+        _cityLabel.font = [UIFont systemFontOfSize:17.f];
         _cityLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:_cityLabel];
         
@@ -49,6 +57,7 @@
     [super layoutSubviews];
     _slideImageView.frame = self.contentView.frame;
     _cityLabel.frame = _slideImageView.bounds;
+    _effectView.frame = _slideImageView.bounds;
     
     
 }

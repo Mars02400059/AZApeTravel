@@ -52,7 +52,8 @@
         [self.myView addSubview:_soldLabel];
         
         self.priceLabel = [UILabel new];
-        _priceLabel.textColor = [UIColor orangeColor];
+        _priceLabel.textColor = [UIColor grayColor];
+        _priceLabel.font = [UIFont systemFontOfSize:15.f];
         _priceLabel.textAlignment = NSTextAlignmentRight;
         [self.myView addSubview:_priceLabel];
         
@@ -69,7 +70,32 @@
     
     _titleLabel.text = listModel.title;
     _soldLabel.text = listModel.sold;
-    _priceLabel.text = [NSString stringWithFormat:@"%@元起",listModel.price];
+    
+    // 根据想要改变的位置, 先给出一个改变位置的字符串, 比如我这里需要的是数字
+    NSString *count = listModel.price;
+    
+    // 给文本一个内容
+    _priceLabel.text = [NSString stringWithFormat:@"%@元起", count];
+    
+    // 创建富文本 (可变的) NSMutableAttributedString 并把想要修改的原字符串填入
+    NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:_priceLabel.text];
+    
+    // 获取改变部分在原字符串中的位置
+    NSRange range = [_priceLabel.text rangeOfString:count];
+    
+    // 设置富文本属性(切记字典的最后一组属性, 不要有逗号)
+    NSDictionary *dicA = @{
+                           NSFontAttributeName:[UIFont boldSystemFontOfSize:18.f],
+                           NSForegroundColorAttributeName:[UIColor orangeColor]
+                           };
+    
+    // 添加属性到相应位置
+    [temp setAttributes:dicA range:range];
+    
+    // 将富文本给 label 的 attibutedText 属性, 这里用的是赋值符号=给予的
+    _priceLabel.attributedText = temp;
+
+
 }
 - (void)setTopicListModel:(DiscountTopicListModel *)topicListModel {
     _topicListModel = topicListModel;
@@ -81,7 +107,30 @@
     
     _soldLabel.text = topicListModel.sold;
     
-    _priceLabel.text = [NSString stringWithFormat:@"%@元起",topicListModel.price];
+    // 根据想要改变的位置, 先给出一个改变位置的字符串, 比如我这里需要的是数字
+    NSString *count = topicListModel.price;
+    
+    // 给文本一个内容
+    _priceLabel.text = [NSString stringWithFormat:@"%@元起", count];
+    
+    // 创建富文本 (可变的) NSMutableAttributedString 并把想要修改的原字符串填入
+    NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:_priceLabel.text];
+    
+    // 获取改变部分在原字符串中的位置
+    NSRange range = [_priceLabel.text rangeOfString:count];
+    
+    // 设置富文本属性(切记字典的最后一组属性, 不要有逗号)
+    NSDictionary *dicA = @{
+                           NSFontAttributeName:[UIFont boldSystemFontOfSize:18.f],
+                           NSForegroundColorAttributeName:[UIColor orangeColor]
+                           };
+    
+    // 添加属性到相应位置
+    [temp setAttributes:dicA range:range];
+    
+    // 将富文本给 label 的 attibutedText 属性, 这里用的是赋值符号=给予的
+    _priceLabel.attributedText = temp;
+
 }
 
 - (void)layoutSubviews {
