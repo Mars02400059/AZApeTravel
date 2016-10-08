@@ -16,7 +16,7 @@
 #import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
 #import "UIView+Frame.h"
-
+#import "AZBaseAmountTextFField.h"
 #import "ReisterSubsLoginViewController.h"
 #import "Not_MissModel.h"
 #import "Most_PopularModel.h"
@@ -29,6 +29,15 @@
 #import "DiscountTopicTopicModel.h"
 #import "HotGoodsModel.h"
 
+#import "FootprintOldInspanViewController.h"
+
+#import "OldCityViewController.h"
+#import "EnterGroupModel.h"
+#import "EnterForumListModel.h"
+#import "OldCityModel.h"
+#import "PartnerViewModel.h"
+#import "TalkViewModel.h"
+#import "RegisterViewController.h"
 #import "FootPrintTwoCollectionViewCell.h"
 #import "HotArea.h"
 #import "AZBaseTextField.h"

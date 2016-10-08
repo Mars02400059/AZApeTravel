@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSDictionary *topic;
 
-@property (nonatomic, strong) NSArray *list;
+@property (nonatomic, strong) NSArray *listArray;
+
 
 @end

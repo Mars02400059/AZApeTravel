@@ -10,6 +10,6 @@
 
 @interface HotGoodTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) NSArray *hot_goodsArray;
+@property (nonatomic, strong) NSMutableArray *hot_goodsArray;
 
 @end

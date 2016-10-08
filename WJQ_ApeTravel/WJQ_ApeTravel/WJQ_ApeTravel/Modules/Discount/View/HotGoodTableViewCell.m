@@ -22,8 +22,7 @@ UICollectionViewDataSource
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLaout;
 
 @property (nonatomic, strong) UICollectionView *hot_goodsCollectionView;
-
-@property (nonatomic, strong) NSMutableArray * hotGoodsArray;
+@property (nonatomic, strong) NSMutableArray *hotgoodsArray;
 
 @end
 
@@ -32,7 +31,7 @@ UICollectionViewDataSource
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.hotGoodsArray = [NSMutableArray array];
+        self.hotgoodsArray = [NSMutableArray array];
         self.backlabel = [UILabel new];
         _backlabel.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.000];
         [self.contentView addSubview:_backlabel];
@@ -55,25 +54,21 @@ UICollectionViewDataSource
     
     return self;
 }
-- (void)setHot_goodsArray:(NSArray *)hot_goodsArray {
+- (void)setHot_goodsArray:(NSMutableArray *)hot_goodsArray {
     
     _hot_goodsArray = hot_goodsArray;
-    [_hotGoodsArray removeAllObjects];
-    for (NSDictionary *hot_goodsDic in hot_goodsArray) {
-        HotGoodsModel *hotGoodsModel = [[HotGoodsModel alloc] initWithDic:hot_goodsDic];
-        [_hotGoodsArray addObject:hotGoodsModel];
-    }
-
+    [_hotgoodsArray removeAllObjects];
+    _hotgoodsArray = hot_goodsArray;
     [_hot_goodsCollectionView reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _hotGoodsArray.count;
+    return _hotgoodsArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HotGoodCollectionViewCell *cell = [_hot_goodsCollectionView dequeueReusableCellWithReuseIdentifier:collectionViewCell forIndexPath:indexPath];
-    HotGoodsModel *hotGoodsModel = _hotGoodsArray[indexPath.row];
+    HotGoodsModel *hotGoodsModel = _hotgoodsArray[indexPath.row];
     cell.hotGoodsModel = hotGoodsModel;
     return cell;
 }

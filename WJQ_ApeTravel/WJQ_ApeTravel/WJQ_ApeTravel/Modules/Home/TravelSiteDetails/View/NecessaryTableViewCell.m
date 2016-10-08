@@ -86,7 +86,10 @@ UICollectionViewDataSource
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    
+    
     // 总高度 10 + 60 + (self.contentView.width - 20 * 3) / 2 * 1.5 * 2 + 20 + 60
+    
     _backLabel.frame = CGRectMake(0, 0, self.contentView.width, 10);
     
     _myLabel.frame = CGRectMake(0, 10, self.contentView.width, 60);
@@ -98,9 +101,15 @@ UICollectionViewDataSource
     _flowLayout.minimumLineSpacing = 20.f;
     _flowLayout.minimumInteritemSpacing = 20.f;
     
-    _collectionView.frame = CGRectMake(20, 10 + _myLabel.height, self.contentView.width - 20 * 2, itemWidth * 1.5 * 2 + 20);
+    NSInteger number = 0;
+    if (_local_basicArray.count % 2) {
+        number = _local_basicArray.count / 2;
+    } else {
+        number = _local_basicArray.count / 2 + 1;
+    }
+    _collectionView.frame = CGRectMake(20, 10 + _myLabel.height, self.contentView.width - 20 * 2, itemWidth * 1.5 * number + 20 * (number - 1));
     
-    _button.frame = CGRectMake(0, _collectionView.y + _collectionView.height, self.contentView.width, 60);
+    _button.frame = CGRectMake(0, self.contentView.height - 60, self.contentView.width, 60);
     
 }
 

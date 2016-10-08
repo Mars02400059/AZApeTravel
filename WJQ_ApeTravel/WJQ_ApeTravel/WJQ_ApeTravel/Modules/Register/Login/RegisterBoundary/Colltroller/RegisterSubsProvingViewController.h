@@ -9,7 +9,10 @@
 #import "AZBaseController.h"
 
 @interface RegisterSubsProvingViewController : AZBaseController
-
+/**
+ *  电话号
+ */
 @property (nonatomic, copy) NSString *titleLabelText;
+
 
 @end

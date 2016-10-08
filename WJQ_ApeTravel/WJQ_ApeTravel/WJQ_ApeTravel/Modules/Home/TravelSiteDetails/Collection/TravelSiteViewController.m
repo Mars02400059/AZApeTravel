@@ -79,7 +79,7 @@ UICollectionViewDataSource
     
     self.travelSiteTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _travelSiteTableView.showsVerticalScrollIndicator = NO;
-    _travelSiteTableView.backgroundColor = [UIColor cyanColor];
+    _travelSiteTableView.backgroundColor = [UIColor whiteColor];
     _travelSiteTableView.delegate = self;
     _travelSiteTableView.dataSource = self;
     [self.view addSubview:_travelSiteTableView];
@@ -143,16 +143,39 @@ UICollectionViewDataSource
 //    return heiget;
 #if 1
     if (indexPath.row == 0) {
-        CGFloat Height = (self.view.width * 0.5 + 70) * _not_missArray.count + 10 + 60;
-        return Height;
+        if (_not_missArray.count != 0) {
+            CGFloat Height = (self.view.width * 0.5 + 70) * _not_missArray.count + 10 + 60;
+            return Height;
 
+        } else {
+            return 0.5;
+        }
+        
     } else if (indexPath.row == 1) {
-        CGFloat Heiget = 10 + 60 + ((self.view.width - 15 * 2 - 10 * 2) / 3 * 1.5 + 10) * 2 + 60;
-        return Heiget;
+        
+        if (_most_popularArray.count != 0) {
+            
 
+            CGFloat Heiget = 10 + 60 + ((self.view.width - 15 * 2 - 10 * 2) / 3 * 1.5 + 10) * 2 + 60;
+            return Heiget;
+        } else {
+            return 0.5;
+        }
     } else {
-        CGFloat Heiget = 10 + 60 + (self.view.width - 20 * 3) / 2 * 1.5 * 2 + 20 + 60;
-        return Heiget;
+        NSInteger number = 0;
+        if (_local_basicArray.count % 2 == 0) {
+            number = _local_basicArray.count / 2;
+        } else {
+            number = _local_basicArray.count / 2 + 1;
+        }
+
+        if (_local_basicArray.count != 0) {
+            CGFloat Heiget = 10 + 60 + (self.view.width - 20 * 3) / 2 * 1.5 * number + 20 * (number - 1) + 60;
+            return Heiget;
+        } else {
+            return 0.5;
+        }
+        
     }
 #endif
 
@@ -175,34 +198,62 @@ UICollectionViewDataSource
 //    return cell;
 #if 1
     if (indexPath.row == 0) {
-        static NSString *const noMissCell = @"noMissCell";
+        
+        if (_not_missArray.count != 0) {
+            static NSString *const noMissCell = @"noMissCell";
+            
+            NOMissTableViewCell *cell = [_travelSiteTableView dequeueReusableCellWithIdentifier:noMissCell];
+            if (cell == nil) {
+                cell = [[NOMissTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:noMissCell];
+            }
+            cell.not_missArray = _not_missArray;
+            return cell;
 
-        NOMissTableViewCell *cell = [_travelSiteTableView dequeueReusableCellWithIdentifier:noMissCell];
-        if (cell == nil) {
-            cell = [[NOMissTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:noMissCell];
+            
+        } else {
+            UITableViewCell *cell = [_travelSiteTableView dequeueReusableCellWithIdentifier:@"zhanwei"];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"zhanwei"];
+            }
+            return cell;
         }
-        cell.not_missArray = _not_missArray;
-        return cell;
     } else if (indexPath.row == 1) {
-        static NSString *const bestWelcomeCell = @"bestWelcomeCell";
+        
+        if (_most_popularArray.count != 0) {
+            static NSString *const bestWelcomeCell = @"bestWelcomeCell";
+            
+            BestWelcomeTableViewCell *cell = [_travelSiteTableView dequeueReusableCellWithIdentifier:bestWelcomeCell];
+            if (cell == nil) {
+                cell = [[BestWelcomeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:bestWelcomeCell];
+            }
+            cell.most_popularArray = _most_popularArray;
+            return cell;
 
-        BestWelcomeTableViewCell *cell = [_travelSiteTableView dequeueReusableCellWithIdentifier:bestWelcomeCell];
-        if (cell == nil) {
-            cell = [[BestWelcomeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:bestWelcomeCell];
+        } else {
+            UITableViewCell *cell = [_travelSiteTableView dequeueReusableCellWithIdentifier:@"zhanwei"];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"zhanwei"];
+            }
+            return cell;
         }
-        cell.most_popularArray = _most_popularArray;
-        return cell;
     } else {
-        static NSString *const necessaryCell = @"necessaryCell";
-        
-        NecessaryTableViewCell *cell = [_travelSiteTableView dequeueReusableCellWithIdentifier:necessaryCell];
-        if (cell == nil) {
-            cell = [[NecessaryTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:necessaryCell];
+        if (_local_basicArray.count != 0) {
+            static NSString *const necessaryCell = @"necessaryCell";
+            
+            NecessaryTableViewCell *cell = [_travelSiteTableView dequeueReusableCellWithIdentifier:necessaryCell];
+            if (cell == nil) {
+                cell = [[NecessaryTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:necessaryCell];
+            }
+            cell.local_basicArray = _local_basicArray;
+            
+            return cell;
+        } else {
+            UITableViewCell *cell = [_travelSiteTableView dequeueReusableCellWithIdentifier:@"zhanwei"];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"zhanwei"];
+            }
+            return cell;
         }
-        cell.local_basicArray = _local_basicArray;
-        
-        return cell;
-
     }
     
 #endif

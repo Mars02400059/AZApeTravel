@@ -106,17 +106,18 @@ UITableViewDataSource
 
 - (void)setHotArea:(HotArea *)hotArea {
     _hotArea = hotArea;
+    
+    
     [_hotAreaListArray removeAllObjects];
     [_hotAreaPlaceArray removeAllObjects];
-    for (NSDictionary *placeDic in hotArea.place) {
-        HotAreaPlaceModel *placeModel = [[HotAreaPlaceModel alloc] initWithDic:placeDic];
-        [_hotAreaPlaceArray addObject:placeModel];
+    for (HotAreaPlaceModel *hotAreaPlaceModel in hotArea.place) {
+        [_hotAreaPlaceArray addObject:hotAreaPlaceModel];
     }
     
-    for (NSDictionary *listDic in hotArea.list) {
+
+    for (HotAreaListModel *hotAreaListModel in hotArea.list) {
         
-        HotAreaListModel *listModel = [[HotAreaListModel alloc] initWithDic:listDic];
-        [_hotAreaListArray addObject:listModel];
+        [_hotAreaListArray addObject:hotAreaListModel];
     }
     
     [_listTableView reloadData];
@@ -132,8 +133,7 @@ UITableViewDataSource
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     Hot_AreaSubViewCollectionViewCell *cell = [_placeCollectionView dequeueReusableCellWithReuseIdentifier:collectionCell forIndexPath:indexPath];
-    HotAreaPlaceModel *placeModel = _hotAreaPlaceArray[indexPath.row];
-    cell.placeModel = placeModel;
+    cell.placeModel = _hotAreaPlaceArray[indexPath.row];
     return cell;
 }
 

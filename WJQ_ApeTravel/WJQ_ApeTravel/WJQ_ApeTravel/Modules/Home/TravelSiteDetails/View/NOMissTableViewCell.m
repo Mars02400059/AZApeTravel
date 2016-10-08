@@ -86,7 +86,7 @@ UITableViewDataSource
     
     _myLabel.frame = CGRectMake(0, 10, self.contentView.width, 60);
     
-    _myTableView.frame = CGRectMake(0, _myLabel.height + 10, self.contentView.width, (self.contentView.width * 0.5 + 70) * 3);
+    _myTableView.frame = CGRectMake(0, _myLabel.height + 10, self.contentView.width, (self.contentView.width * 0.5 + 70) * _not_missArray.count);
     
     _myTableView.rowHeight = self.contentView.width * 0.5 + 70;
     

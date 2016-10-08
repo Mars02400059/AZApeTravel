@@ -46,10 +46,13 @@
 }
 
 - (void)setPlaceModel:(HotAreaPlaceModel *)placeModel {
+
     _placeModel = placeModel;
-    NSURL *url = [NSURL URLWithString:placeModel.photo];
+    HotAreaPlaceModel *areaPlaceModel = placeModel;
+    
+    NSURL *url = [NSURL URLWithString:areaPlaceModel.photo];
     [_slideImageView sd_setImageWithURL:url];
-    _cityLabel.text = placeModel.name;
+    _cityLabel.text = areaPlaceModel.name;
 }
 
 

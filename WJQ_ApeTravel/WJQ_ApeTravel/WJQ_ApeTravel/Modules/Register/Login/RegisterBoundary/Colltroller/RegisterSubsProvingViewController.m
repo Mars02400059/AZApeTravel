@@ -12,6 +12,8 @@
 
 @interface RegisterSubsProvingViewController ()
 
+@property (nonatomic, strong) AZBaseTextField *provingTextFielf;
+
 @end
 
 @implementation RegisterSubsProvingViewController
@@ -43,9 +45,9 @@
     titleLabel.font = [UIFont systemFontOfSize:15.f];
     [self.view addSubview:titleLabel];
     
-    AZBaseTextField *provingTextFielf = [[AZBaseTextField alloc] initWithFrame:CGRectMake(50, self.view.height / 3, 150, 50)];
-    provingTextFielf.placeholder = @"       输入验证码";
-    [self.view addSubview:provingTextFielf];
+    self.provingTextFielf = [[AZBaseTextField alloc] initWithFrame:CGRectMake(50, self.view.height / 3, 150, 50)];
+    _provingTextFielf.placeholder = @"       输入验证码";
+    [self.view addSubview:_provingTextFielf];
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
     nextButton.frame = CGRectMake((self.view.width - 120) / 2, self.view.height / 3 * 2, 120, 40);
@@ -59,9 +61,14 @@
 }
 
 - (void)nextButtonAction {
-    RegisterSubsLastViewController *lastVC = [[RegisterSubsLastViewController alloc] init];
-    [self presentViewController:lastVC animated:YES completion:nil];
-    
+     if (_provingTextFielf.text.length < 5 && _provingTextFielf.text.length > 3) {
+         RegisterSubsLastViewController *lastVC = [[RegisterSubsLastViewController alloc] init];
+         lastVC.phoneNumber = _titleLabelText;
+         lastVC.provingText = _provingTextFielf.text;
+         [self presentViewController:lastVC animated:YES completion:nil];
+     } else {
+         NSLog(@"验证码格式输入错误");
+     }
 }
 - (void)returnButtonAction {
     [self dismissViewControllerAnimated:YES completion:nil];

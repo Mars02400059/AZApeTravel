@@ -19,7 +19,7 @@
 #import "TravelSiteViewController.h"
 static NSString *const collectionCell = @"cell";
 
-
+static NSInteger number = 2;
 @interface HomeViewController ()
 <
 UITableViewDelegate,
@@ -52,20 +52,11 @@ CommendViewDelegate
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    if (_tableView.contentOffset.y <= -50) {
-        
-        NSLog(@"刷新数据");
-    }
-    
-    if (_tableView.contentOffset.y + _tableView.height - _tableView.contentSize.height >= 50) {
-        
-        NSLog(@"加载数据");
-    }
+
     if (_tableView.contentOffset.y >= (_collectionView.height) && _use == YES) {
         [UIView animateWithDuration:0.01 animations:^{
             _use = NO;
-//            self.navigationController.navigationBar.hidden = NO;
+            self.navigationController.navigationBar.hidden = NO;
             self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
             _tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
         } completion:nil];
@@ -117,7 +108,14 @@ CommendViewDelegate
     
     // 网络请求 + 解析数据
     
-    [self asyncLoadData:@"http://open.qyer.com/qyer/home/home_feed?client_id=qyer_android&client_secret=9fcaae8aefc4f9ac4915&v=1&track_deviceid=A1000052A2BCDD&track_app_version=7.0.2&track_app_channel=baidu&track_device_info=PD1524B&track_os=Android5.1&app_installtime=1474192132493&page=1"];
+    
+    //默认【下拉刷新】
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(asyncLoadData)];
+    //默认【上拉加载】
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+
+    
+    [self asyncLoadData];
 
 
 }
@@ -210,7 +208,7 @@ CommendViewDelegate
     //默认【上拉加载】
 //    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
 
-    
+
     [self getNetworkData];
 }
 
@@ -285,7 +283,10 @@ CommendViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     HomeSlideModel *homeSlideModel = _collectionViewArray[indexPath.row];
-    
+    JumpViewController *jumpVC = [[JumpViewController alloc] init];
+    jumpVC.url = homeSlideModel.url;
+    [self.navigationController pushViewController:jumpVC animated:YES];
+
 }
 
 - (void)timerAction:(NSTimer *)timer {
@@ -420,25 +421,29 @@ CommendViewDelegate
     
     JumpViewController *jumpVC = [[JumpViewController alloc] init];
     jumpVC.url = homeModel.url;
+    jumpVC.title = homeModel.title;
     [self.navigationController pushViewController:jumpVC animated:YES];
     
     NSLog(@"haha : %ld", indexPath.row);
 }
 // 网络请求
-- (void)asyncLoadData:(NSString *)urlString {
+- (void)asyncLoadData {
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        NSString *url = urlString;
+        NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/qyer/home/home_feed?client_id=qyer_android&client_secret=9fcaae8aefc4f9ac4915&v=1&track_deviceid=A1000052A2BCDD&track_app_version=7.0.2&track_app_channel=baidu&track_device_info=PD1524B&track_os=Android5.1&app_installtime=1474192132493&page=1"];
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSDictionary *dataDic = [responseObject objectForKey:@"data"];
 #pragma mark - 轮播图数据
             NSArray *slideArray = [dataDic objectForKey:@"slide"];
+            [_collectionViewArray removeAllObjects];
             for (NSDictionary *slideDic in slideArray) {
                 HomeSlideModel *homeSlideModel = [[HomeSlideModel alloc] initWithDic:slideDic];
                 [_collectionViewArray addObject:homeSlideModel];
             }
             
 #pragma mark - cell部分数据
+            [_tableViewArray removeAllObjects];
             NSDictionary *feedDic = [dataDic objectForKey:@"feed"];
             NSArray *entryArray = [feedDic objectForKey:@"entry"];
             for (NSDictionary *entryDic in entryArray) {
@@ -452,7 +457,7 @@ CommendViewDelegate
                 [_collectionView reloadData];
                 
                 [_tableView reloadData];
-                
+                [self.tableView.mj_header endRefreshing];
             });
 
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -461,6 +466,37 @@ CommendViewDelegate
         
         
     });
+}
+
+- (void)loadMore {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/qyer/home/home_feed?client_id=qyer_android&client_secret=9fcaae8aefc4f9ac4915&v=1&track_deviceid=A1000052A2BCDD&track_app_version=7.0.2&track_app_channel=baidu&track_device_info=PD1524B&track_os=Android5.1&app_installtime=1474192132493&page=%ld", number];
+        number++;
+        [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+
+            
+#pragma mark - cell部分数据
+            NSDictionary *feedDic = [dataDic objectForKey:@"feed"];
+            NSArray *entryArray = [feedDic objectForKey:@"entry"];
+            for (NSDictionary *entryDic in entryArray) {
+                HomeModel *homeModel = [[HomeModel alloc] initWithDic:entryDic];
+                [_tableViewArray addObject:homeModel];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 设置偏移量, 定位到第50组
+                [_tableView reloadData];
+                [self.tableView.mj_footer endRefreshing];
+            });
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error : %@", error);
+        }];
+        
+        
+    });
+
 }
 
 - (void)didReceiveMemoryWarning {

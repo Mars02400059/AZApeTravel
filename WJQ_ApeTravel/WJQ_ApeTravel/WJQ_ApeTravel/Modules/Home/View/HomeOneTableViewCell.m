@@ -134,14 +134,9 @@
     _coverImageView.frame = CGRectMake(0, viewHeight, width, width / 2 - 30);
     _columnLabel.frame = CGRectMake(0, 25 + viewHeight, 90, 25);
     
-    _picImageView.center = CGPointMake(width / 2, width / 2 - 30 + viewHeight / 2);
-    _picImageView.width = 50.f;
-    _picImageView.height = 50.f;
+    _picImageView.frame = CGRectMake(width / 2 - 25, _view.height + _coverImageView.height - 25, 50, 50);
     
-    
-    _usernameLabel.width = 70.f;
-    _usernameLabel.height = 20.f;
-    _usernameLabel.center = CGPointMake(width / 2, width / 2 + 10 + viewHeight / 2);
+    _usernameLabel.frame = CGRectMake(width / 2 - 45, _view.height + _coverImageView.height - 25 + _picImageView.height, 90, 20);
 
     _titleLabel.frame = CGRectMake(0, viewHeight, width - 100, 60);
     _titleLabel.center = CGPointMake(width / 2, width / 2 + 45 + viewHeight / 2);

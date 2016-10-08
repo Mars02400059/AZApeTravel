@@ -10,6 +10,8 @@
 
 @interface JumpViewController : AZBaseController
 
+@property (nonatomic, copy) NSString *titleName;
+
 @property (nonatomic, copy) NSString *url;
 
 @end

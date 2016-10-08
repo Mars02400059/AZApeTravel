@@ -15,7 +15,7 @@
 #import "FoodprintHeadCollectionViewCell.h"
 #import "LookAllTableViewCell.h"
 #import "FootprintCollectionTableViewCell.h"
-
+#import "LookAllTwoTableViewCell.h"
 
 static NSString *const collectionCell = @"collectionCell";
 
@@ -26,7 +26,9 @@ UITableViewDataSource,
 UIScrollViewDelegate,
 UICollectionViewDelegate,
 UICollectionViewDataSource,
-FootprintCollectionTableViewCellDelegate
+FootprintCollectionTableViewCellDelegate,
+LookAllTableViewCellDelegate,
+LookAllTwoTableViewCellDataSource
 >
 
 
@@ -300,6 +302,7 @@ FootprintCollectionTableViewCellDelegate
         
         if (0 == indexPath.row) {
             LookAllTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"lookAllCell1"];
+            cell.delegate = self;
             if (nil == cell) {
                 cell = [[LookAllTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"lookAllCell1"];
             }
@@ -327,6 +330,7 @@ FootprintCollectionTableViewCellDelegate
         
         if (0 == indexPath.row) {
             LookAllTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"lookAllCell1"];
+            cell.delegate = self;
             if (nil == cell) {
                 cell = [[LookAllTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"lookAllCell1"];
             }
@@ -345,10 +349,11 @@ FootprintCollectionTableViewCellDelegate
             cell.hot_cityArray = _cityInfoArray;
             return cell;
         } else if (2 == indexPath.row) {
-            LookAllTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"lookAllCell2"];
+            LookAllTwoTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"lookAllTwoCell"];
             if (nil == cell) {
-                cell = [[LookAllTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"lookAllCell2"];
+                cell = [[LookAllTwoTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"lookAllTwoCell"];
             }
+            cell.dataSource = self;
             cell.labelText = @"超值自由行";
             return cell;
         } else {
@@ -366,6 +371,28 @@ FootprintCollectionTableViewCellDelegate
     }
     
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_inspanInfoArray.count > 0) {
+        if (indexPath.row > 2) {
+            
+        }
+    }
+}
+
+- (void)AZ_transmitInfoAndSpringCityPageTable {
+    OldCityViewController *oldCityVC = [[OldCityViewController alloc] init];
+    oldCityVC.oblastID = _oblastID;
+    oldCityVC.countryID = _countryID;
+    [self.navigationController pushViewController:oldCityVC animated:YES];
+}
+
+- (void)AZ_transmitInfoAndSpringInspanPageTable {
+    FootprintOldInspanViewController *inspanVC = [[FootprintOldInspanViewController alloc] init];
+    inspanVC.oblastID = _oblastID;
+    inspanVC.countryID = _countryID;
+    [self.navigationController pushViewController:inspanVC animated:YES];
 }
 
 - (void)AZ_SelectedIDNumber:(NSString *)idNumber {

@@ -16,19 +16,30 @@
 
 @implementation JumpViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tabBarController.tabBar.hidden = YES;
     self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
     
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(15, 0, self.view.width - 30, self.view.height - 64)];
+//    UIImage *backButtonImage = [[UIImage imageNamed:@"箭头向左"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 19, 0, 0)];
+    
+//    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
+    
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64)];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_url]];
     [self.view addSubview:_webView];
     [_webView loadRequest:request];
     
     
 }
-
+- (void)leftBarButtonItemAction {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

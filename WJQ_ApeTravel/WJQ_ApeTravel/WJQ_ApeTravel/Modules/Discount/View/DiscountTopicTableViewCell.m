@@ -76,13 +76,8 @@ UITableViewDataSource
     NSURL *url = [NSURL URLWithString:[_topicDic objectForKey:@"photo"]];
     [_headerImageView sd_setImageWithURL:url];
     
+    [_listArray addObjectsFromArray:discountTopicModel.listArray];
     
-    
-    NSArray *listArr = discountTopicModel.list;
-    for (NSDictionary *listDic in listArr) {
-        DiscountTopicListModel *listModel = [[DiscountTopicListModel alloc] initWithDic:listDic];
-        [_listArray addObject:listModel];
-    }
     [_listTableView reloadData];
 }
 

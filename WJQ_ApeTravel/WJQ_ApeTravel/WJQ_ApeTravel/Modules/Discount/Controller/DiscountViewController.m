@@ -89,7 +89,7 @@ UITableViewDataSource
         CGFloat X = (i % 5) * buttonView.width / 5;
         CGFloat Y = (i / 5) * buttonView.height / 2;
         DiscountButtonView *myButtonView = [[DiscountButtonView alloc] initWithFrame:CGRectMake(X, Y, buttonWidth / 5,buttonHeight / 2)];
-        myButtonView.buttonImage = [UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg", i + 1]];
+        myButtonView.buttonImage = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
         myButtonView.buttonName = buttonName[i];
 //        myButtonView.backgroundColor = [UIColor colorWithRed:arc4random() % 256 / 255.f green:arc4random() % 256 / 255.f blue:arc4random() % 256 / 255.f alpha:1.00];
         [buttonView addSubview:myButtonView];
@@ -172,7 +172,8 @@ UITableViewDataSource
         if (cell == nil) {
             cell = [[HotGoodTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:goodCell];
         }
-        cell.hot_goodsArray = _hot_goodsArray[indexPath.row - _discountToArray.count - _hotAreaArray.count];
+        NSInteger index = indexPath.row - _discountToArray.count - _hotAreaArray.count;
+        cell.hot_goodsArray = _hot_goodsArray[index];
         return cell;
     }
 
@@ -216,8 +217,13 @@ UITableViewDataSource
             
             
             NSArray *hot_goodsArray = [dataDic objectForKey:@"hot_goods"];
-            
-            [_hot_goodsArray addObject:hot_goodsArray];
+            [_hot_goodsArray removeAllObjects];
+            NSMutableArray *hotgoodsArray = [NSMutableArray array];
+            for (NSDictionary *hot_goodsDic in hot_goodsArray) {
+                HotGoodsModel *hotGoodsModel = [[HotGoodsModel alloc] initWithDic:hot_goodsDic];
+                [hotgoodsArray addObject:hotGoodsModel];
+            }
+            [_hot_goodsArray addObject:hotgoodsArray];
             
             
             dispatch_async(dispatch_get_main_queue(), ^{

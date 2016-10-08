@@ -1,23 +1,26 @@
 //
-//  RegisterSubsLastViewController.m
+//  ReisterSubsLoginViewController.m
 //  WJQ_ApeTravel
 //
 //  Created by mars on 16/10/3.
 //  Copyright © 2016年 Mars02400059. All rights reserved.
 //
 
-#import "RegisterSubsLastViewController.h"
+#import "ReisterSubsLoginViewController.h"
+#import "RegisterSubsProvingViewController.h"
 
-@interface RegisterSubsLastViewController ()
+
+@interface ReisterSubsLoginViewController ()
+
+@property (nonatomic, strong) AZBaseTextField *loginTextFielf;
 
 @end
 
-@implementation RegisterSubsLastViewController
+@implementation ReisterSubsLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.view.backgroundColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
     
     CGFloat topY = 30.f;
@@ -35,40 +38,30 @@
     loginLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:loginLabel];
     
-    
-    AZBaseTextField *nameTextField = [[AZBaseTextField alloc] initWithFrame:CGRectMake(20, self.view.height / 5, self.view.width - 20 * 2, 50)];
-    nameTextField.placeholder = @"填写您的用户名";
-    [self.view addSubview:nameTextField];
-    
-    
-    AZBaseTextField *codeTextField = [[AZBaseTextField alloc] initWithFrame:CGRectMake(20, self.view.height / 4 + 20, self.view.width / 2 - 20, 50)];
-    codeTextField.placeholder = @"填写密码 (不少于6位)";
-    [self.view addSubview:codeTextField];
-    
-    CGFloat inviteX = 20 * 2 + codeTextField.width;
-    AZBaseTextField *inviteNumberTextField = [[AZBaseTextField alloc] initWithFrame:CGRectMake(inviteX, self.view.height / 4 + 20, self.view.width - 20 - inviteX, 50)];
-    inviteNumberTextField.placeholder = @"邀请码 (选填)";
-    [self.view addSubview:inviteNumberTextField];
-    
-    
+    self.loginTextFielf = [[AZBaseTextField alloc] initWithFrame:CGRectMake(20 + 60, self.view.height / 5, self.view.width - 20 - 60 - 20, 40)];
+    _loginTextFielf.keyboardType = UIKeyboardTypeNumberPad;
+    _loginTextFielf.placeholder = @"填写您的手机号码";
+    [self.view addSubview:_loginTextFielf];
     
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake((self.view.width - 120) / 2, self.view.height / 4 * 3, 120, 40);
+    nextButton.frame = CGRectMake((self.view.width - 120) / 2, self.view.height / 3 * 2, 120, 40);
     nextButton.backgroundColor = [UIColor whiteColor];
     nextButton.layer.cornerRadius = 5.f;
-    [nextButton setTitle:@"完成" forState:UIControlStateNormal];
+    [nextButton setTitle:@"下 一 步" forState:UIControlStateNormal];
     [nextButton setTitleColor:[UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000] forState:UIControlStateNormal];
     [nextButton addTarget:self action:@selector(nextButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextButton];
-    
-    NSString *body = [NSString stringWithFormat:@"account_s=9260f95b9e8c4a428dffead2da3d5d13&account_type=1&client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&grant_type=password&lat=41.20185519999997&lon=125.60576439&page=1&password=1234560987&track_app_channel=App%%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%%25209.3.4&username=%%E8%%B5%%B7%%E5%%90%%8D%%E7%%9C%%9F%%E9%%9A%%BE%%E5%%95%%8A%%E5%%95%%8A&v=1"];
-    
 }
 
 - (void)nextButtonAction {
-
-    
+    if (_loginTextFielf.text.length < 12 && _loginTextFielf.text.length > 10) {
+        RegisterSubsProvingViewController *provingVC = [[RegisterSubsProvingViewController alloc] init];
+        provingVC.titleLabelText = _loginTextFielf.text;
+        [self presentViewController:provingVC animated:YES completion:nil];
+    } else {
+        NSLog(@"电话号格式不正确");
+    }
 }
 
 - (void)returnButtonAction {

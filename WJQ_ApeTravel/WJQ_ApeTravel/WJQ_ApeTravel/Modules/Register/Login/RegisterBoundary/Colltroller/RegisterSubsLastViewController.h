@@ -10,4 +10,8 @@
 
 @interface RegisterSubsLastViewController : AZBaseController
 
+@property (nonatomic, copy) NSString *phoneNumber;
+
+@property (nonatomic, copy) NSString *provingText;
+
 @end

@@ -79,6 +79,9 @@ UICollectionViewDataSource
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
+    
     self.continentArray = [NSMutableArray array];
     self.popBournArray = [NSMutableArray array];
     self.restArray = [NSMutableArray array];
@@ -90,7 +93,7 @@ UICollectionViewDataSource
 - (void)createMapSubView {
     
     // 整个界面滑动视图
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64 - 50)];
 #warning 颜色记得改 地图高度self.view.width / 1.8
     _scrollView.backgroundColor = [UIColor whiteColor];
     _scrollView.contentSize = CGSizeMake(0, 1000);

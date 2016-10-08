@@ -56,7 +56,7 @@
 }
 
 - (void)myButtonAction:(UIButton *)myButton {
-    NSLog(@"哈哈");
+    [self.delegate AZ_transmitInfoAndSpringCityPageTable];
 }
 
 - (void)layoutSubviews {
