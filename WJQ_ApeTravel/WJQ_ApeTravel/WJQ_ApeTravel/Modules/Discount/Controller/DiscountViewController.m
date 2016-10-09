@@ -44,6 +44,9 @@ HotGoodTableViewCellDelegate
 
 @property (nonatomic, strong) UIImageView *headerViewRaghtDownImage;
 
+@property (nonatomic, strong) NSMutableArray *hotgoodsArray;
+
+
 @end
 
 @implementation DiscountViewController
@@ -66,6 +69,8 @@ HotGoodTableViewCellDelegate
     self.market_topicArray = [NSMutableArray array];
     self.discountToArray = [NSMutableArray array];
 
+    self.hotgoodsArray = [NSMutableArray array];
+
 
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
     [self createSubView];
@@ -74,7 +79,7 @@ HotGoodTableViewCellDelegate
 }
 
 - (void)createSubView {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64 - 50) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
@@ -174,14 +179,16 @@ HotGoodTableViewCellDelegate
         cell.discountTopicModel = _discountToArray[indexPath.row - _hotAreaArray.count];
         return cell;
     } else {
+        
         static NSString *const goodCell = @"goodCell";
         HotGoodTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:goodCell];
         if (cell == nil) {
             cell = [[HotGoodTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:goodCell];
         }
         cell.delegate = self;
-        NSInteger index = indexPath.row - _discountToArray.count - _hotAreaArray.count;
-        cell.hot_goodsArray = _hot_goodsArray[index];
+//        NSInteger index = indexPath.row - _discountToArray.count - _hotAreaArray.count;
+        cell.hot_goodsArray = self.hot_goodsArray[0];
+        NSLog(@"%@", self.hot_goodsArray);
         return cell;
     }
 
@@ -235,7 +242,6 @@ HotGoodTableViewCellDelegate
             }
             
             
-            
             NSArray *discount_topicArray = [dataDic objectForKey:@"discount_topic"];
             
             for (NSDictionary *discount_topicDic in discount_topicArray) {
@@ -244,16 +250,19 @@ HotGoodTableViewCellDelegate
             }
             
             
+            
+            
             NSArray *hot_goodsArray = [dataDic objectForKey:@"hot_goods"];
-            [_hot_goodsArray removeAllObjects];
-            NSMutableArray *hotgoodsArray = [NSMutableArray array];
+
             for (NSDictionary *hot_goodsDic in hot_goodsArray) {
                 HotGoodsModel *hotGoodsModel = [[HotGoodsModel alloc] initWithDic:hot_goodsDic];
-                [hotgoodsArray addObject:hotGoodsModel];
+                [_hotgoodsArray addObject:hotGoodsModel];
+
             }
-            [_hot_goodsArray addObject:hotgoodsArray];
-            
-            
+            [self.hot_goodsArray addObject:_hotgoodsArray];
+
+            NSLog(@"%@", _hot_goodsArray);
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 MarkettopicModel *listImageModel = _market_topicArray[0];

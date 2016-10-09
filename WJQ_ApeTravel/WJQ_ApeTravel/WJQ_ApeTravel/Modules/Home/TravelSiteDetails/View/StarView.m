@@ -45,6 +45,7 @@
     rect = self.bounds;
     UIFont *font = [UIFont boldSystemFontOfSize:_starSize];
     CGSize starSize = [stars sizeWithFont:font];
+    
     rect.size=starSize;
     [_emptyColor set];
     [stars drawInRect:rect withFont:font];
