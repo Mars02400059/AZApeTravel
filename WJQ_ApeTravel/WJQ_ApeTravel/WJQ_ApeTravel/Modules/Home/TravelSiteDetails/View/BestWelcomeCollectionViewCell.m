@@ -59,7 +59,7 @@
     _nameLabel.text = most_popularModel.name;
     
     
-    _starView.showStar = most_popularModel.score / 2.0f * 15;
+    _starView.showStar = most_popularModel.score / 2.0f * 18;
     
     _scoreLabel.text = [NSString stringWithFormat:@"%.1f", most_popularModel.score];
 
@@ -74,9 +74,9 @@
     
     _nameLabel.frame = CGRectMake(0, self.contentView.width, self.contentView.width, self.contentView.width / 4);
     
-    _starView.frame = CGRectMake(0, self.contentView.height - 25, 20 * 5, 20);
+    _starView.frame = CGRectMake(0, self.contentView.height - 25, 18 * 5, 18);
     
-    _scoreLabel.frame = CGRectMake(_starView.width - 5, 0, self.width - _starView.width + 5, _starView.height);
+    _scoreLabel.frame = CGRectMake(_starView.width, 2, self.width - _starView.width + 5, _starView.height);
     
     
 }

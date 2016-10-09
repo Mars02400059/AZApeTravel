@@ -10,15 +10,7 @@
 
 @implementation HotAreaPlaceModel
 
-- (void)setName:(NSString *)name {
-    _name = name;
 
-}
-
-- (void)setPhoto:(NSString *)photo {
-    _photo = photo;
-
-}
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     if ([key isEqualToString:@"id"]) {

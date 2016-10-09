@@ -32,15 +32,17 @@ UITableViewDataSource
 
 @implementation FootprintOldInspanViewController
 - (void)viewDidAppear:(BOOL)animated {
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
     self.navigationItem.title = @"中国特价折扣";
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 45)];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 45)];
     titleView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.00];
     [self.view addSubview:titleView];
     self.tableViewArray = [NSMutableArray array];
@@ -66,7 +68,7 @@ UITableViewDataSource
     _pointLabel.backgroundColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
     [titleView addSubview:_pointLabel];
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 45 + 64, self.view.width, self.view.height - 45 - 64) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 45, self.view.width, self.view.height - 45 - 64) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [_tableView registerClass:[TravelInspanTableViewCell class] forCellReuseIdentifier:Cell];
@@ -78,6 +80,14 @@ UITableViewDataSource
     _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadAMore)];
     [self asyncALoadData];
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DiscountInfoViewController *discountInfoVC = [[DiscountInfoViewController alloc] init];
+    TravelInspanModel *travelInspanModel = _tableViewArray[indexPath.row];
+    discountInfoVC.idNumber = travelInspanModel.idNumber;
+    [self.navigationController pushViewController:discountInfoVC animated:YES];
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

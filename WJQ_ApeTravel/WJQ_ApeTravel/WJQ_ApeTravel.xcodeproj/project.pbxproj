@@ -695,8 +695,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>EnterForumListModel.h</string>
 			<key>path</key>
 			<string>EnterForumListModel.h</string>
 			<key>sourceTree</key>
@@ -710,8 +708,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>EnterForumListModel.m</string>
 			<key>path</key>
 			<string>EnterForumListModel.m</string>
 			<key>sourceTree</key>
@@ -732,8 +728,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>EnterGroupModel.h</string>
 			<key>path</key>
 			<string>EnterGroupModel.h</string>
 			<key>sourceTree</key>
@@ -747,8 +741,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>EnterGroupModel.m</string>
 			<key>path</key>
 			<string>EnterGroupModel.m</string>
 			<key>sourceTree</key>
@@ -835,8 +827,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>FootprintOldInspanViewController.h</string>
 			<key>path</key>
 			<string>FootprintOldInspanViewController.h</string>
 			<key>sourceTree</key>
@@ -850,8 +840,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>FootprintOldInspanViewController.m</string>
 			<key>path</key>
 			<string>FootprintOldInspanViewController.m</string>
 			<key>sourceTree</key>
@@ -2873,6 +2861,55 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>41B6FA261DA9279800DBF924</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>41B6FA271DA927EB00DBF924</string>
+				<string>41B6FA281DA927EB00DBF924</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>DiscountInfo</string>
+			<key>path</key>
+			<string>DiscountInfo</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>41B6FA271DA927EB00DBF924</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>DiscountInfoViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>41B6FA281DA927EB00DBF924</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>DiscountInfoViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>41B6FA291DA927EB00DBF924</key>
+		<dict>
+			<key>fileRef</key>
+			<string>41B6FA281DA927EB00DBF924</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>41CA10271D9BB7B80094024E</key>
 		<dict>
 			<key>children</key>
@@ -3687,6 +3724,7 @@
 				<string>49D9AFE91D924C540095FB0D</string>
 				<string>49A01AD21D950D980066C1B9</string>
 				<string>41002FC11DA52D2500CDAB31</string>
+				<string>41B6FA291DA927EB00DBF924</string>
 				<string>418250FF1D9D2CA10088F78D</string>
 				<string>49D9AF911D92167B0095FB0D</string>
 				<string>411F66B11D9C97D0004779A5</string>
@@ -4726,6 +4764,7 @@
 			<key>children</key>
 			<array>
 				<string>49D9AFB81D9217AD0095FB0D</string>
+				<string>41B6FA261DA9279800DBF924</string>
 				<string>418250E11D9CF2D60088F78D</string>
 				<string>49D9AFB91D9217B00095FB0D</string>
 			</array>

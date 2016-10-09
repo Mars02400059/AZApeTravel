@@ -10,6 +10,7 @@
 
 @interface TravelInspanModel : AZBaseModel
 
+@property (nonatomic, copy) NSString *idNumber;
 /**
  *  图片
  */

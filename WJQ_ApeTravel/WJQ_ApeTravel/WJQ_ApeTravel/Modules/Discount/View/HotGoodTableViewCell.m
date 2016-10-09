@@ -62,6 +62,11 @@ UICollectionViewDataSource
     [_hot_goodsCollectionView reloadData];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    HotGoodsModel *hotGoodsModel = _hotgoodsArray[indexPath.row];
+    [self.delegate AZ_hotGoodTableViewCellIdNumber:hotGoodsModel.idNumber];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _hotgoodsArray.count;
 }

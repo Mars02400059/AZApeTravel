@@ -13,7 +13,10 @@
 @interface DiscountViewController ()
 <
 UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+Hot_AreaTableViewCellDelegate,
+DiscountTopicTableViewCellDelegate,
+HotGoodTableViewCellDelegate
 >
 @property (nonatomic, strong) UITableView *tableView;
 /**
@@ -46,7 +49,10 @@ UITableViewDataSource
 @implementation DiscountViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    _tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
+//    _tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
+    
+    self.tabBarController.tabBar.hidden = NO;
+
 }
 
 - (void)viewDidLoad {
@@ -154,7 +160,7 @@ UITableViewDataSource
         if (cell == nil) {
             cell = [[Hot_AreaTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:areaCell];
         }
-        
+        cell.delegate = self;
         cell.hotArea = _hotAreaArray[indexPath.row];
         return cell;
     } else if (_hotAreaArray.count + _discountToArray.count - 1 >= indexPath.row) {
@@ -164,6 +170,7 @@ UITableViewDataSource
             cell = [[DiscountTopicTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:topicCell];
         
         }
+        cell.delegate = self;
         cell.discountTopicModel = _discountToArray[indexPath.row - _hotAreaArray.count];
         return cell;
     } else {
@@ -172,6 +179,7 @@ UITableViewDataSource
         if (cell == nil) {
             cell = [[HotGoodTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:goodCell];
         }
+        cell.delegate = self;
         NSInteger index = indexPath.row - _discountToArray.count - _hotAreaArray.count;
         cell.hot_goodsArray = _hot_goodsArray[index];
         return cell;
@@ -179,12 +187,32 @@ UITableViewDataSource
 
 }
 
+- (void)AZ_hotGoodTableViewCellIdNumber:(NSString *)idNumber {
+    DiscountInfoViewController *discountInfoVC = [[DiscountInfoViewController alloc] init];
+    discountInfoVC.idNumber = idNumber;
+    [self.navigationController pushViewController:discountInfoVC animated:YES];
+}
+
+- (void)AZ_discountTopicIdNumber:(NSString *)idNumber {
+    
+    DiscountInfoViewController *discountInfoVC = [[DiscountInfoViewController alloc] init];
+    discountInfoVC.idNumber = idNumber;
+    [self.navigationController pushViewController:discountInfoVC animated:YES];
+
+}
+
+- (void)AZ_areaaTableViewDidIdNumber:(NSString *)idNumber {
+    DiscountInfoViewController *discountInfoVC = [[DiscountInfoViewController alloc] init];
+    discountInfoVC.idNumber = idNumber;
+    [self.navigationController pushViewController:discountInfoVC animated:YES];
+}
+
 // 网络请求
 - (void)asyncLoad {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        NSString *url = @"http://open.qyer.com/qyer/discount/zk/discount_index?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&lat=38.8826253838339&lon=121.5392390459955&page=1&track_app_channel=App%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%25209.3.4&v=1";
+        NSString *url = @"http://open.qyer.com/qyer/discount/zk/discount_index?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&lat=38.88263699917143&lon=121.539418408466&page=1&track_app_channel=App%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%25209.3.4&v=1";
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             
             

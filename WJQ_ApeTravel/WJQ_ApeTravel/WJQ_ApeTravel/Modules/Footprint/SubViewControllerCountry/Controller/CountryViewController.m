@@ -376,7 +376,10 @@ LookAllTwoTableViewCellDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_inspanInfoArray.count > 0) {
         if (indexPath.row > 2) {
-            
+            DiscountInfoViewController *discountInfoVC = [[DiscountInfoViewController alloc] init];
+            TravelInspanModel *travelInspanModel = _inspanInfoArray[indexPath.row - 3];
+            discountInfoVC.idNumber = travelInspanModel.idNumber;
+            [self.navigationController pushViewController:discountInfoVC animated:YES];
         }
     }
 }

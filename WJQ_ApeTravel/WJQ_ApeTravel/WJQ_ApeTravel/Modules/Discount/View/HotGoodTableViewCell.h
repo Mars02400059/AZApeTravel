@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol HotGoodTableViewCellDelegate <NSObject>
+
+- (void)AZ_hotGoodTableViewCellIdNumber:(NSString *)idNumber;
+
+@end
+
 @interface HotGoodTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NSMutableArray *hot_goodsArray;
+
+@property (nonatomic, assign) id<HotGoodTableViewCellDelegate>delegate;
 
 @end

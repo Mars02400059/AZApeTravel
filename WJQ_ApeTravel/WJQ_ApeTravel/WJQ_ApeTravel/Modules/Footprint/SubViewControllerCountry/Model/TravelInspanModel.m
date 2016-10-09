@@ -10,6 +10,13 @@
 
 @implementation TravelInspanModel
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    if ([key isEqualToString:@"id"]) {
+        self.idNumber = value;
+        return;
+    }
+    [super setValue:value forUndefinedKey:key];
 
+}
 
 @end

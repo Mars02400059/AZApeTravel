@@ -30,7 +30,7 @@
 #import "HotGoodsModel.h"
 
 #import "FootprintOldInspanViewController.h"
-
+#import "DiscountInfoViewController.h"
 #import "OldCityViewController.h"
 #import "EnterGroupModel.h"
 #import "EnterForumListModel.h"

@@ -81,6 +81,12 @@ UITableViewDataSource
     [_listTableView reloadData];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DiscountTopicListModel *listModel = _listArray[indexPath.row];
+    [self.delegate AZ_discountTopicIdNumber:listModel.idNumber];
+
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     

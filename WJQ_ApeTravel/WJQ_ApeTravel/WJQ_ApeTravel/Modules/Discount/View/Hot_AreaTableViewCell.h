@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol Hot_AreaTableViewCellDelegate <NSObject>
+
+- (void)AZ_areaaTableViewDidIdNumber:(NSString *)idNumber;
+
+@end
+
 @interface Hot_AreaTableViewCell : UITableViewCell
 
 //@property (nonatomic, strong) NSArray *hotAreaPlaceArray;
 //@property (nonatomic, strong) NSArray *hotAreaListArray;
 //@property (nonatomic, strong) NSDictionary *hot_areaDic;
 @property (nonatomic, strong) HotArea *hotArea;
+@property (nonatomic, assign) id<Hot_AreaTableViewCellDelegate>delegate;
 
 @end

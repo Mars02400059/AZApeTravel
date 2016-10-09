@@ -21,6 +21,8 @@ static NSString *const collectionViewCellIndentifier = @"collectionViewCell";
 
 static NSString *const tableViewCellIndentifier = @"tableViewCell";
 
+static BOOL judgeLeap = YES;
+
 @interface FootprintViewController ()
 <
 UITableViewDelegate,
@@ -63,18 +65,42 @@ UICollectionViewDataSource
 @property (nonatomic, strong) UILabel *elseLabel;
 
 @property (nonatomic, copy) NSString *str;
+
+
 @end
 
 @implementation FootprintViewController
 
 - (void)viewDidAppear:(BOOL)animated {
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
 //    self.navigationController.navigationBar.subviews.firstObject.alpha = 1;
     
+    if (judgeLeap) {
+        if (self.navigationController.navigationBar.hidden) {
+            _scrollView.frame = CGRectMake(0, 64, self.view.width, self.view.height - 64 - 50);
+            
+        } else {
+            _scrollView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
+        }
 
+    } else {
+
+        judgeLeap = YES;
+
+        if (self.navigationController.navigationBar.hidden) {
+            _scrollView.frame = CGRectMake(0, 64, self.view.width, self.view.height - 64);
+            
+        } else {
+            _scrollView.frame = CGRectMake(0, 64, self.view.width, self.view.height - 64);
+        }
+
+        
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -93,7 +119,8 @@ UICollectionViewDataSource
 - (void)createMapSubView {
     
     // 整个界面滑动视图
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64 - 50)];
+//    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64 - 50)];
+    self.scrollView = [[UIScrollView alloc] init];
 #warning 颜色记得改 地图高度self.view.width / 1.8
     _scrollView.backgroundColor = [UIColor whiteColor];
     _scrollView.contentSize = CGSizeMake(0, 1000);
@@ -349,9 +376,9 @@ UICollectionViewDataSource
 }
 // collectionView 页面跳转
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
-    _scrollView.frame = CGRectMake(0, 64, self.view.width, self.view.height);
+    
+    judgeLeap = NO;
     
     FootprintPopBournModel *popBournModel = _popBournArray[indexPath.row];
     ContinentModel *continentModel = _continentArray[0];
@@ -397,7 +424,9 @@ UICollectionViewDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
-    _scrollView.frame = CGRectMake(0, 64, self.view.width, self.view.height);
+    
+    judgeLeap = NO;
+
     
     FootprintPopBournModel *restModel = _restArray[indexPath.row];
     ContinentModel *continentModel = _continentArray[0];

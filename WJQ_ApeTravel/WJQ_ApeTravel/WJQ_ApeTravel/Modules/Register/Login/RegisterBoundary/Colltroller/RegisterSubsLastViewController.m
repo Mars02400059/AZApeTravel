@@ -63,7 +63,7 @@
     [self.view addSubview:nextButton];
     
     NSString *name = [NSString stringWithFormat:@"qw"];
-    
+#warning 有加密
     NSString *body = [NSString stringWithFormat:@"account_s=9260f95b9e8c4a428dffead2da3d5d13%@&account_type=1&client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&grant_type=password&lat=41.20185519999997&lon=125.60576439&page=1&password=%@&track_app_channel=App%%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%%25209.3.4&username=%@&v=1", _phoneNumber,  codeTextField.text, name];
     
 }

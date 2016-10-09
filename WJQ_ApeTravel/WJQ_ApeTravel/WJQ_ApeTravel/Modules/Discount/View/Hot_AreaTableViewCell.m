@@ -137,6 +137,11 @@ UITableViewDataSource
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    HotAreaListModel *listModel = _hotAreaListArray[indexPath.row];
+    NSString *idNumber = [NSString stringWithFormat:@"%@", listModel.idNumber];
+    [self.delegate AZ_areaaTableViewDidIdNumber:idNumber];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _hotAreaListArray.count;

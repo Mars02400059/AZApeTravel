@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 @class TravelInspanModel;
+
+
+
 @interface TravelInspanTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) TravelInspanModel *travelInspanModel;
+
+
 
 @end

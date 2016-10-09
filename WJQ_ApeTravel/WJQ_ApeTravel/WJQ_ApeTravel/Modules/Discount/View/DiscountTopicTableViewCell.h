@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol DiscountTopicTableViewCellDelegate <NSObject>
+
+- (void)AZ_discountTopicIdNumber:(NSString *)idNumber;
+
+@end
+
 @interface DiscountTopicTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) DiscountTopic *discountTopicModel;
+
+@property (nonatomic, assign) id<DiscountTopicTableViewCellDelegate>delegate;
 
 @end

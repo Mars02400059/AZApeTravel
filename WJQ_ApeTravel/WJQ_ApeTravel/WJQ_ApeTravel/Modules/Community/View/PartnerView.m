@@ -102,7 +102,7 @@ UITableViewDataSource
 - (void)loadMore {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/qyer/company/search_list?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&lat=41.19759848641075&lon=125.6096293717715&page=%ld&track_app_channel=App%%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%%25209.3.4&v=%ld", number];
+        NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/qyer/company/search_list?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&lat=41.19759848641075&lon=125.6096293717715&page=%ld&track_app_channel=App%%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%%25209.3.4&v=1", number];
         number++;
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSArray *dataArray = [responseObject objectForKey:@"data"];
