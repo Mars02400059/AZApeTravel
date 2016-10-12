@@ -1,0 +1,24 @@
+//
+//  NOMissTableViewCell.h
+//  WJQ_ApeTravel
+//
+//  Created by mars on 16/9/28.
+//  Copyright © 2016年 Mars02400059. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@protocol NOMissTableViewCellDelegate <NSObject>
+
+- (void)AZ_nomissIdNumber:(NSString *)idNumber title:(NSString *)title;
+
+@end
+
+
+@interface NOMissTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) NSArray *not_missArray;
+
+@property (nonatomic, assign) id<NOMissTableViewCellDelegate>delegate;
+
+@end
