@@ -12,6 +12,8 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+#import "MBProgressHUD.h"
+
 #import <AFNetworking.h>
 #import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
@@ -42,7 +44,7 @@
 #import "RegisterViewController.h"
 #import "FootPrintTwoCollectionViewCell.h"
 #import "HotArea.h"
-
+#import "DiscountCityListModel.h"
 #import "DiscountTypeDataModel.h"
 #import "DiscountTypeDataPoiModel.h"
 #import "DiscountTypeDataListModel.h"

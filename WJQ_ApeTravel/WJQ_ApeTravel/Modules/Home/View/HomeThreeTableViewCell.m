@@ -118,7 +118,7 @@ UICollectionViewDataSource
     [_subitemsCollectionView reloadData];
     
     NSURL *icon_url = [NSURL URLWithString:homeModel.icon_url];
-    [_icon_urlImageView sd_setImageWithURL:icon_url];
+    [_icon_urlImageView sd_setImageWithURL:icon_url placeholderImage:[UIImage imageNamed:@"啊"]];
     
   
 }

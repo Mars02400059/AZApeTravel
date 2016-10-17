@@ -16,10 +16,6 @@
 
 @implementation CommunityWebViewViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.tabBarController.tabBar.hidden = YES;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +23,8 @@
     
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
+    
+    
     
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64)];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_webViewUrl]];

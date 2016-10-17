@@ -87,7 +87,7 @@
 - (void)setTalkViewModel:(TalkViewModel *)talkViewModel {
     _talkViewModel = talkViewModel;
     NSURL *url = [NSURL URLWithString:talkViewModel.avatar];
-    [_avatarImageView sd_setImageWithURL:url];
+    [_avatarImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _authorLabel.text = talkViewModel.author;
     
@@ -101,7 +101,7 @@
     
     NSArray *imageUrlArray = talkViewModel.bigpic_arr;
     NSURL *leftUrl = [NSURL URLWithString:imageUrlArray[0]];
-    [_leftImageView sd_setImageWithURL:leftUrl];
+    [_leftImageView sd_setImageWithURL:leftUrl placeholderImage:[UIImage imageNamed:@"啊"]];
     
 
 }

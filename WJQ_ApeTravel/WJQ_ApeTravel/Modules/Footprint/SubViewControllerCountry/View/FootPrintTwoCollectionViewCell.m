@@ -34,8 +34,6 @@
     if (self) {
         
         
-        
-        self.backgroundColor = [UIColor redColor];
         self.slideImageView = [UIImageView new];
         [self.contentView addSubview:_slideImageView];
         
@@ -64,7 +62,8 @@
 - (void)setCityModel:(CityModel *)cityModel {
     _cityModel = cityModel;
     NSURL *url = [NSURL URLWithString:cityModel.photo];
-    [_slideImageView sd_setImageWithURL:url];
+//    [_slideImageView sd_setImageWithURL:url];
+    [_slideImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _cityLabel.text = cityModel.cnname;
     

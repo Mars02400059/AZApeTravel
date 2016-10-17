@@ -69,8 +69,8 @@
 
     
     NSURL *url = [NSURL URLWithString:travelInspanModel.photo];
-    [_photoImageView sd_setImageWithURL:url];
-    
+//    [_photoImageView sd_setImageWithURL:url];
+    [_photoImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     _titleLabel.text = travelInspanModel.title;
     
     _priceoffLabel.text = travelInspanModel.priceoff;

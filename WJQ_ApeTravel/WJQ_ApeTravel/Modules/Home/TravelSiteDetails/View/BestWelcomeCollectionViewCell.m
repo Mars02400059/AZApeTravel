@@ -30,7 +30,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.photoImageView = [UIImageView new];
-        _photoImageView.backgroundColor = [UIColor yellowColor];
+//        _photoImageView.backgroundColor = [UIColor yellowColor];
         [self.contentView addSubview:_photoImageView];
         
         self.nameLabel = [UILabel new];
@@ -54,7 +54,7 @@
 - (void)setMost_popularModel:(Most_PopularModel *)most_popularModel {
     _most_popularModel = most_popularModel;
     NSURL *url = [NSURL URLWithString:most_popularModel.photo];
-    [_photoImageView sd_setImageWithURL:url];
+    [_photoImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _nameLabel.text = most_popularModel.name;
     

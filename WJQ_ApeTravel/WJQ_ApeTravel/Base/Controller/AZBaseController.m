@@ -10,13 +10,36 @@
 
 @interface AZBaseController ()
 
+@property(nonatomic, strong)UIActivityIndicatorView*activity;
+
+@property (nonatomic, strong) MBProgressHUD *hud;
+
+
 @end
 
 @implementation AZBaseController
 
+#if 1
+
+
+
+#endif
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.label.text = @"加载中..";
+    _hud.animationType = MBProgressHUDAnimationZoomIn;
+
+#if 1
+    
+    
+    
+#endif
+    
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor whiteColor];

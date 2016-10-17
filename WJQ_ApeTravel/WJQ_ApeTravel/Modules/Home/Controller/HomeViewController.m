@@ -41,14 +41,17 @@ CommendViewDelegate
 // 时候可以执行动画
 @property (nonatomic, assign) BOOL use;
 
+@property (nonatomic, strong) MBProgressHUD *hud;
+
 @end
 
 @implementation HomeViewController
 
 // 视图将要出现
 - (void)viewWillAppear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = NO;
-    self.navigationController.navigationBar.hidden = YES;
+
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    self.navigationController.navigationBar.hidden = YES;
     self.use = YES;
 }
 #if 0
@@ -81,8 +84,7 @@ CommendViewDelegate
     /// 在视图将要出现时写navigationBar状态
 //    self.navigationController.navigationBar.hidden = NO;
     
-    
-    
+
 
     
     [self createSubView];
@@ -153,7 +155,7 @@ CommendViewDelegate
     _collectionView.pagingEnabled = YES;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.backgroundColor = [UIColor redColor];
+    _collectionView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:_collectionView];
     [_collectionView registerClass:[SlideCollectionViewCell class] forCellWithReuseIdentifier:collectionCell];
     
@@ -261,6 +263,7 @@ CommendViewDelegate
 - (void)AZ_DeliverCity_ID:(NSString *)city_id {
     
     TravelSiteViewController *travelSiteVC = [[TravelSiteViewController alloc] init];
+    travelSiteVC.hidesBottomBarWhenPushed = YES;
     travelSiteVC.city_id = city_id;
     [self.navigationController pushViewController:travelSiteVC animated:YES];
     
@@ -269,6 +272,7 @@ CommendViewDelegate
 - (void)AZ_deliverButtonCityID:(NSString *)buttonCityID {
     TravelSiteViewController *travelSiteVC = [[TravelSiteViewController alloc] init];
     travelSiteVC.city_id = buttonCityID;
+    travelSiteVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:travelSiteVC animated:YES];
 
 }
@@ -301,6 +305,7 @@ CommendViewDelegate
     HomeSlideModel *homeSlideModel = _collectionViewArray[indexPath.row];
     JumpViewController *jumpVC = [[JumpViewController alloc] init];
     jumpVC.url = homeSlideModel.url;
+    jumpVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:jumpVC animated:YES];
 
 }
@@ -438,14 +443,16 @@ CommendViewDelegate
     JumpViewController *jumpVC = [[JumpViewController alloc] init];
     jumpVC.url = homeModel.url;
     jumpVC.title = homeModel.title;
+    jumpVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:jumpVC animated:YES];
     
-    NSLog(@"haha : %ld", indexPath.row);
 }
 // 网络请求
 - (void)asyncLoadData {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/qyer/home/home_feed?client_id=qyer_android&client_secret=9fcaae8aefc4f9ac4915&v=1&track_deviceid=A1000052A2BCDD&track_app_version=7.0.2&track_app_channel=baidu&track_device_info=PD1524B&track_os=Android5.1&app_installtime=1474192132493&page=1"];
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -469,6 +476,8 @@ CommendViewDelegate
                 [_tableViewArray addObject:homeModel];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                
                 // 设置偏移量, 定位到第50组
                 _collectionView.contentOffset = CGPointMake(_collectionView.bounds.size.width * _collectionViewArray.count * 50, 0);
                 
@@ -524,6 +533,8 @@ CommendViewDelegate
 
 - (void)loadMore {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/qyer/home/home_feed?client_id=qyer_android&client_secret=9fcaae8aefc4f9ac4915&v=1&track_deviceid=A1000052A2BCDD&track_app_version=7.0.2&track_app_channel=baidu&track_device_info=PD1524B&track_os=Android5.1&app_installtime=1474192132493&page=%ld", number];
         number++;
@@ -539,6 +550,8 @@ CommendViewDelegate
                 [_tableViewArray addObject:homeModel];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                 // 设置偏移量, 定位到第50组
                 [_tableView reloadData];
                 [self.tableView.mj_footer endRefreshing];

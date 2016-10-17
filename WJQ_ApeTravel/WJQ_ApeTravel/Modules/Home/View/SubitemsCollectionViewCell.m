@@ -59,7 +59,7 @@
 - (void)setSubitemsDic:(NSDictionary *)subitemsDic {
     _subitemsDic = subitemsDic;
     NSURL *url = [NSURL URLWithString:[subitemsDic objectForKey:@"item_cover"]];
-    [_item_coverImageView sd_setImageWithURL:url];
+    [_item_coverImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _item_nameLabel.text = [subitemsDic objectForKey:@"item_name"];
     

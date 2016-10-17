@@ -78,6 +78,8 @@ UICollectionViewDataSource
 // 网络请求
 - (void)asyncLoadData{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/place/city/get_city_list?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=%@&countryid=%@&lat=41.19759848641075&lon=125.6096293717715&page=1&track_app_channel=App%%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%%25209.3.4&v=1", _oblastID, _countryID];
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -87,6 +89,8 @@ UICollectionViewDataSource
                 [_collectionViewArray addObject:oldCityModel];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                 [_collectionView reloadData];
             });
             
@@ -103,12 +107,16 @@ UICollectionViewDataSource
         NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/place/city/get_city_list?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=%@&countryid=%@&lat=41.19759848641075&lon=125.6096293717715&page=%ld&track_app_channel=App%%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%%25209.3.4&v=1", _oblastID, _countryID, number];
         number++;
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
             NSArray *dataArray = [responseObject objectForKey:@"data"];
             for (NSDictionary *dataDic in dataArray) {
                 OldCityModel *oldCityModel = [[OldCityModel alloc] initWithDic:dataDic];
                 [_collectionViewArray addObject:oldCityModel];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                 [_collectionView.mj_footer endRefreshing];
                 [_collectionView reloadData];
             });

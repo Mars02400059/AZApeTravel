@@ -27,7 +27,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.photoImageView = [UIImageView new];
-        _photoImageView.backgroundColor = [UIColor blueColor];
+//        _photoImageView.backgroundColor = [UIColor blueColor];
         [self.contentView addSubview:_photoImageView];
         
         self.titleLabel = [UILabel new];
@@ -36,7 +36,7 @@
         [self.contentView addSubview:_titleLabel];
         
         self.soldLabel = [UILabel new];
-        _soldLabel.textColor = [UIColor grayColor];
+//        _soldLabel.textColor = [UIColor grayColor];
         _soldLabel.font = [UIFont systemFontOfSize:14.f];
         [self.contentView addSubview:_soldLabel];
         
@@ -53,7 +53,7 @@
 - (void)setLocal_basicModel:(Local_BasicModel *)local_basicModel {
     _local_basicModel = local_basicModel;
     NSURL *url = [NSURL URLWithString:local_basicModel.photo];
-    [_photoImageView sd_setImageWithURL:url];
+    [_photoImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _titleLabel.text = local_basicModel.title;
     

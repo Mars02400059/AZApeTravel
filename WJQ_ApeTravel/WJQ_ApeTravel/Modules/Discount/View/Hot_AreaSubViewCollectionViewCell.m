@@ -51,7 +51,7 @@
     HotAreaPlaceModel *areaPlaceModel = placeModel;
     
     NSURL *url = [NSURL URLWithString:areaPlaceModel.photo];
-    [_slideImageView sd_setImageWithURL:url];
+    [_slideImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     _cityLabel.text = areaPlaceModel.name;
 }
 

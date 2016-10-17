@@ -60,7 +60,7 @@
     _hotGoodsModel = hotGoodsModel;
     
     NSURL *url = [NSURL URLWithString:hotGoodsModel.photo];
-    [_photoImageView sd_setImageWithURL:url];
+    [_photoImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _titleLabel.text = hotGoodsModel.title;
     
@@ -102,7 +102,7 @@
     
     _statusLabel.frame = CGRectMake(7, _photoImageView.height + _titleLabel.height, _titleLabel.width / 2, _myView.height * 0.15);
     
-    _priceLabel.frame = CGRectMake(7 + _statusLabel.width, _photoImageView.height + _titleLabel.height, _statusLabel.width, _statusLabel.height);
+    _priceLabel.frame = CGRectMake(_statusLabel.width - 3, _photoImageView.height + _titleLabel.height, _statusLabel.width + 10, _statusLabel.height);
     
 }
 

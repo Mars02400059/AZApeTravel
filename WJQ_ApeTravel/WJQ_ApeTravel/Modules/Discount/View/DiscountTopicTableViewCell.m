@@ -48,7 +48,6 @@ UITableViewDataSource
         [self.contentView addSubview:_myLabel];
         
         self.listTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _listTableView.backgroundColor = [UIColor redColor];
         _listTableView.scrollEnabled = NO;
         _listTableView.delegate = self;
         _listTableView.dataSource = self;
@@ -86,7 +85,7 @@ UITableViewDataSource
     
     _myLabel.text = [_topicDic objectForKey:@"title"];
     NSURL *url = [NSURL URLWithString:[_topicDic objectForKey:@"photo"]];
-    [_headerImageView sd_setImageWithURL:url];
+    [_headerImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     [_listArray addObjectsFromArray:discountTopicModel.listArray];
     

@@ -7,16 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "HomeViewController.h"
-#import "FootprintViewController.h"
-#import "DiscountViewController.h"
-#import "CommunityViewController.h"
-#import "RegisterViewController.h"
+#import "AZTabBarViewController.h"
+#import "ViewController.h"
+
 
 @interface AppDelegate ()
 
 
-@property (nonatomic, retain) UITabBarController *tabBarController;
+@property (nonatomic, retain) AZTabBarViewController *tabBarController;
 
 @end
 
@@ -32,69 +30,28 @@
     [_window makeKeyAndVisible];
     
     
-    
-    
-    
-    self.tabBarController = [[UITabBarController alloc] init];
-    
-    
-    
-    
-    
-    // 选中时字体颜色
-    _tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.213 green:0.471 blue:0.264 alpha:1.000];
+    [NSThread sleepForTimeInterval:0.55];
 
-    // 背景颜色
-    _tabBarController.tabBar.barTintColor = [UIColor colorWithWhite:0.886 alpha:1.000];
-
+    NSUserDefaults *useDef = [NSUserDefaults standardUserDefaults];
     
-    HomeViewController *homeVc = [[HomeViewController alloc] init];
-
-    [self setViewController:homeVc tabBarTitle:@"推荐" imageName:@"推荐" selectedImageName:@"推荐 (1)"];
     
-    FootprintViewController *footprintVC = [[FootprintViewController alloc] init];
-    [self setViewController:footprintVC tabBarTitle:@"目的地" imageName:@"目的地" selectedImageName:@"目的地 (1)"];
-    
-    DiscountViewController *discountVC = [[DiscountViewController alloc] init];
-    [self setViewController:discountVC tabBarTitle:@"旅行商城" imageName:@"商城" selectedImageName:@"商城 (1)"];
-    
-    CommunityViewController *communityVC = [[CommunityViewController alloc] init];
-    [self setViewController:communityVC tabBarTitle:@"社区" imageName:@"社区" selectedImageName:@"社区 (1)"];
-
-#if 1
-    RegisterViewController *registerVC = [[RegisterViewController alloc] init];
-    [self setViewController:registerVC tabBarTitle:@"我的" imageName:@"我" selectedImageName:@"我 (1)"];
-#endif
-
-    
-    self.window.rootViewController = _tabBarController;
-
-    
-//    UIView *backView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    backView.alpha = 0.2;
-//    backView.backgroundColor = [UIColor blackColor];
-//    [_window addSubview:backView];
-
+    if (![useDef boolForKey:@"notFirst"]) {
+        // 引导页
+        _window.rootViewController = [[ViewController alloc] init];
+    } else {
+        
+        self.tabBarController = [[AZTabBarViewController alloc] init];
+        // 选中时字体颜色
+        _tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.213 green:0.471 blue:0.264 alpha:1.000];
+        // 背景颜色
+        _tabBarController.tabBar.barTintColor = [UIColor colorWithWhite:0.886 alpha:1.000];
+        self.window.rootViewController = _tabBarController;
+    }
     
     
     return YES;
 }
 
-/// 设置视图, 并添加到容量视图控制器
-- (void)setViewController:(UIViewController *)viewController tabBarTitle:(NSString *)tabBarTitle imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName {
-    
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    UIImage *image = [UIImage imageNamed:imageName];
-    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
-    selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    navigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:tabBarTitle image:image selectedImage:selectedImage];
-    [_tabBarController addChildViewController:navigationController];
-
-
-}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

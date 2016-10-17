@@ -63,7 +63,7 @@
     _titleLabel.center = CGPointMake(_coverImageView.bounds.size.width / 2, 25);
     _titleLabel.textColor = [UIColor colorWithWhite:0.850 alpha:1.000];
     effectView.frame = _coverImageView.frame;
-    [_coverImageView addSubview:_titleLabel];
+//    [_coverImageView addSubview:_titleLabel];
     
     self.city_nameLabel = [[UILabel alloc] init];
     _city_nameLabel.width = 120.f;
@@ -145,7 +145,8 @@
 - (void)setDataDic:(NSDictionary *)dataDic {
     _dataDic = dataDic;
     NSURL *coverUrl = [NSURL URLWithString:[dataDic objectForKey:@"cover"]];
-    [_coverImageView sd_setImageWithURL:coverUrl];
+//    [_coverImageView sd_setImageWithURL:coverUrl];
+    [_coverImageView sd_setImageWithURL:coverUrl placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _titleLabel.text = [dataDic objectForKey:@"title"];
     _city_nameLabel.text = [dataDic objectForKey:@"city_name"];

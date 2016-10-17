@@ -86,7 +86,6 @@ LookAllTwoTableViewCellDataSource
      */
     self.navigationController.navigationBar.hidden = NO;
     //    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    self.tabBarController.tabBar.hidden = YES;
     self.use = YES;
 
     // 调整透明度
@@ -134,7 +133,7 @@ LookAllTwoTableViewCellDataSource
     _tableView.delegate = self;
     [self.view addSubview:_tableView];
     
-#pragma mark - 已登录相关的底部按钮
+#pragma mark - 与登录相关的底部按钮
     // tableView下方的按钮
     self.buttonView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.height - 50, self.view.width, 50)];
     _buttonView.backgroundColor = [UIColor cyanColor];
@@ -158,22 +157,22 @@ LookAllTwoTableViewCellDataSource
     _collectionView.pagingEnabled = YES;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.backgroundColor = [UIColor redColor];
+    _collectionView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:_collectionView];
     [_collectionView registerClass:[FoodprintHeadCollectionViewCell class] forCellWithReuseIdentifier:collectionCell];
     if (_timer) {
         [_timer invalidate];
     }
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
     
     // 国家名, 中文
-    self.canameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _collectionView.height / 2, 100, 40)];
+    self.canameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _collectionView.height / 2, self.view.width - 20 * 2, 40)];
     _canameLabel.textColor = [UIColor whiteColor];
     _canameLabel.font = [UIFont systemFontOfSize:22.f];
     [headerView addSubview:_canameLabel];
     
     // 国家名, 英文
-    self.ennameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _collectionView.height / 2 + 35, 70, 30)];
+    self.ennameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _collectionView.height / 2 + 35, self.view.width - 20 * 2, 30)];
     _ennameLabel.font = [UIFont systemFontOfSize:18.f];
     _ennameLabel.textColor = [UIColor whiteColor];
     [headerView addSubview:_ennameLabel];
@@ -187,6 +186,8 @@ LookAllTwoTableViewCellDataSource
     
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/qyer/footprint/country_detail?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=%@&country_id=%@&lat=38.88269136659446&lon=121.5392352265454&page=1&track_app_channel=App%%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%%25209.3.4&v=1", _oblastID, _countryID];
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -224,7 +225,8 @@ LookAllTwoTableViewCellDataSource
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                 for (int i = 0; i < _modelArray.count; i++) {
                     CountryModel *countryModel = _modelArray[i];
                     

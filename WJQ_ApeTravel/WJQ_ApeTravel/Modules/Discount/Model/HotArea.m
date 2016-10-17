@@ -48,7 +48,7 @@
             self.typeName = @"东南亚";
             return;
         } else if ([typeStr isEqualToString:@"om"]) {
-            self.typeName = @"欧美";
+            self.typeName = @"欧洲美国";
             return;
         }
         

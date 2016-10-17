@@ -111,24 +111,25 @@
     NSArray *imageUrlArray = talkViewModel.bigpic_arr;
     if (imageUrlArray.count == 1) {
         NSURL *leftUrl = [NSURL URLWithString:imageUrlArray[0]];
-        [_leftImageView sd_setImageWithURL:leftUrl];
+//        [_leftImageView sd_setImageWithURL:leftUrl];
+        [_leftImageView sd_setImageWithURL:leftUrl placeholderImage:[UIImage imageNamed:@"啊"]];
         return;
     } else if (imageUrlArray.count == 2) {
         NSURL *leftUrl = [NSURL URLWithString:imageUrlArray[0]];
-        [_leftImageView sd_setImageWithURL:leftUrl];
+        [_leftImageView sd_setImageWithURL:leftUrl placeholderImage:[UIImage imageNamed:@"啊"]];
         
         NSURL *centerUrl = [NSURL URLWithString:imageUrlArray[1]];
-        [_centerImageView sd_setImageWithURL:centerUrl];
+        [_centerImageView sd_setImageWithURL:centerUrl placeholderImage:[UIImage imageNamed:@"啊"]];
         return;
     } else {
         NSURL *leftUrl = [NSURL URLWithString:imageUrlArray[0]];
-        [_leftImageView sd_setImageWithURL:leftUrl];
+        [_leftImageView sd_setImageWithURL:leftUrl placeholderImage:[UIImage imageNamed:@"啊"]];
         
         NSURL *centerUrl = [NSURL URLWithString:imageUrlArray[1]];
-        [_centerImageView sd_setImageWithURL:centerUrl];
+        [_centerImageView sd_setImageWithURL:centerUrl placeholderImage:[UIImage imageNamed:@"啊"]];
         
         NSURL *rightUrl = [NSURL URLWithString:imageUrlArray[2]];
-        [_rightImageView sd_setImageWithURL:rightUrl];
+        [_rightImageView sd_setImageWithURL:rightUrl placeholderImage:[UIImage imageNamed:@"啊"]];
     }
     
     

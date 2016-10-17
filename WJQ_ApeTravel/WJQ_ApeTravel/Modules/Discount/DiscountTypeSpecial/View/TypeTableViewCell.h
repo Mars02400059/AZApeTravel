@@ -12,6 +12,8 @@
 
 - (void)AZ_typeListIdNumber:(NSString *)idNumber;
 
+- (void)AZ_typeCollecionDidIdNumber:(NSString *)idNumber;
+
 @end
 
 @interface TypeTableViewCell : UITableViewCell

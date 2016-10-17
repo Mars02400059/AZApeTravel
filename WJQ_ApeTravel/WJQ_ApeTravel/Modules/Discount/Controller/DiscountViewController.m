@@ -52,12 +52,6 @@ HotGoodTableViewCellDelegate
 
 @implementation DiscountViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-//    _tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
-    
-    self.tabBarController.tabBar.hidden = NO;
-
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -84,15 +78,17 @@ HotGoodTableViewCellDelegate
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width * 1)];
-//    headerView.backgroundColor = [UIColor redColor];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
+    headerView.height = headerView.height / 3;
     _tableView.tableHeaderView = headerView;
+
+    
+    
     
     CGFloat buttonWidth = headerView.width - 10 * 2;
     CGFloat buttonHeight = headerView.height * 0.55;
     UIView *buttonView = [[UIView alloc] initWithFrame:CGRectMake(10, 30, buttonWidth, buttonHeight)];
-//    buttonView.backgroundColor = [UIColor yellowColor];
-    [headerView addSubview:buttonView];
+//    [headerView addSubview:buttonView];
     NSArray *buttonName = @[@"机酒套餐", @"特价机票", @"酒店", @"机票搜索", @"签证", @"当地游", @"门票", @"WiFi电话", @"交通票卷", @"接送包车"];
     
 #warning 按钮图片改成大小为43 * 43
@@ -102,22 +98,27 @@ HotGoodTableViewCellDelegate
         DiscountButtonView *myButtonView = [[DiscountButtonView alloc] initWithFrame:CGRectMake(X, Y, buttonWidth / 5,buttonHeight / 2)];
         myButtonView.buttonImage = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
         myButtonView.buttonName = buttonName[i];
-//        myButtonView.backgroundColor = [UIColor colorWithRed:arc4random() % 256 / 255.f green:arc4random() % 256 / 255.f blue:arc4random() % 256 / 255.f alpha:1.00];
         [buttonView addSubview:myButtonView];
         
     }
     UIView *grayBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 20 + buttonHeight + 15, headerView.width, 10)];
+    grayBackView.frame = CGRectMake(0, 0, self.view.width, 10);
     grayBackView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.000];
-    [headerView addSubview:grayBackView];
+//    [headerView addSubview:grayBackView];
     
+
     
     CGFloat a = 4;
     CGFloat imageY = grayBackView.y + grayBackView.height;
     CGFloat imageWidth = (headerView.width - a) / 2;
     CGFloat imageHeight = headerView.height - grayBackView.y - grayBackView.height;
+    
+    imageY = 0;
+    imageHeight = headerView.height;
+    
     self.headerViewLeftImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, imageY, imageWidth, imageHeight)];
     _headerViewLeftImage.userInteractionEnabled = YES;
-    _headerViewLeftImage.backgroundColor = [UIColor redColor];
+//    _headerViewLeftImage.backgroundColor = [UIColor redColor];
     [headerView addSubview:_headerViewLeftImage];
     UITapGestureRecognizer *leftTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftTapAction)];
     [_headerViewLeftImage addGestureRecognizer:leftTap];
@@ -127,7 +128,7 @@ HotGoodTableViewCellDelegate
     
     self.headerViewRaghtTopImage = [[UIImageView alloc] initWithFrame:CGRectMake(imageWidth + a, imageY, imageWidth, (imageHeight - a) / 2)];
     _headerViewRaghtTopImage.userInteractionEnabled = YES;
-    _headerViewRaghtTopImage.backgroundColor = [UIColor yellowColor];
+//    _headerViewRaghtTopImage.backgroundColor = [UIColor yellowColor];
     [headerView addSubview:_headerViewRaghtTopImage];
     UITapGestureRecognizer *rightTopTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightTopTapAction)];
     [_headerViewRaghtTopImage addGestureRecognizer:rightTopTap];
@@ -136,7 +137,7 @@ HotGoodTableViewCellDelegate
     
     self.headerViewRaghtDownImage = [[UIImageView alloc] initWithFrame:CGRectMake(imageWidth + a, imageY + a + _headerViewRaghtTopImage.height, imageWidth, _headerViewRaghtTopImage.height)];
     _headerViewRaghtDownImage.userInteractionEnabled = YES;
-    _headerViewRaghtDownImage.backgroundColor = [UIColor greenColor];
+//    _headerViewRaghtDownImage.backgroundColor = [UIColor greenColor];
     [headerView addSubview:_headerViewRaghtDownImage];
     UITapGestureRecognizer *rightDownTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightDownTapAction)];
     [_headerViewRaghtDownImage addGestureRecognizer:rightDownTap];
@@ -149,6 +150,7 @@ HotGoodTableViewCellDelegate
     JumpViewController *jumpVC = [[JumpViewController alloc] init];
     MarkettopicModel *leftTapModel = _market_topicArray[0];
     jumpVC.url = leftTapModel.url;
+    jumpVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:jumpVC animated:YES];
 }
 
@@ -156,6 +158,7 @@ HotGoodTableViewCellDelegate
     JumpViewController *jumpVC = [[JumpViewController alloc] init];
     MarkettopicModel *rightTopTapModel = _market_topicArray[2];
     jumpVC.url = rightTopTapModel.url;
+    jumpVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:jumpVC animated:YES];
 
 }
@@ -164,6 +167,7 @@ HotGoodTableViewCellDelegate
     JumpViewController *jumpVC = [[JumpViewController alloc] init];
     MarkettopicModel *rightDownTapModel = _market_topicArray[1];
     jumpVC.url = rightDownTapModel.url;
+    jumpVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:jumpVC animated:YES];
     
 }
@@ -232,12 +236,14 @@ HotGoodTableViewCellDelegate
 - (void)AZ_discountImageViewTapIdNumber:(NSString *)idNumber {
     JumpViewController *jumpVC = [[JumpViewController alloc] init];
     jumpVC.url = idNumber;
+    jumpVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:jumpVC animated:YES];
 }
 
 - (void)AZ_hotGoodTableViewCellIdNumber:(NSString *)idNumber {
     DiscountInfoViewController *discountInfoVC = [[DiscountInfoViewController alloc] init];
     discountInfoVC.idNumber = idNumber;
+    discountInfoVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:discountInfoVC animated:YES];
 }
 
@@ -245,6 +251,7 @@ HotGoodTableViewCellDelegate
     
     DiscountInfoViewController *discountInfoVC = [[DiscountInfoViewController alloc] init];
     discountInfoVC.idNumber = idNumber;
+    discountInfoVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:discountInfoVC animated:YES];
 
 }
@@ -252,6 +259,7 @@ HotGoodTableViewCellDelegate
 - (void)AZ_areaaTableViewDidIdNumber:(NSString *)idNumber {
     DiscountInfoViewController *discountInfoVC = [[DiscountInfoViewController alloc] init];
     discountInfoVC.idNumber = idNumber;
+    discountInfoVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:discountInfoVC animated:YES];
 }
 
@@ -261,6 +269,7 @@ HotGoodTableViewCellDelegate
     DiscountTypeViewController *typeVC = [[DiscountTypeViewController alloc] init];
     typeVC.type = type;
     typeVC.titleName = typeName;
+    typeVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:typeVC animated:YES];
     
 }
@@ -269,6 +278,9 @@ HotGoodTableViewCellDelegate
 - (void)asyncLoad {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+        
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = @"http://open.qyer.com/qyer/discount/zk/discount_index?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&lat=38.8827664571329&lon=121.5392058787059&page=1&track_app_channel=App%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%25209.3.4&v=1";
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -307,25 +319,26 @@ HotGoodTableViewCellDelegate
 
 
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                 MarkettopicModel *listImageModel = _market_topicArray[0];
                 NSURL *listImageUrl = [NSURL URLWithString:listImageModel.pic];
-                [_headerViewLeftImage sd_setImageWithURL:listImageUrl];
+                [_headerViewLeftImage sd_setImageWithURL:listImageUrl placeholderImage:[UIImage imageNamed:@"啊"]];
                 
                 MarkettopicModel *raghtTopImageModel = _market_topicArray[2];
                 NSURL *raghttopImageUrl = [NSURL URLWithString:raghtTopImageModel.pic];
-                [_headerViewRaghtTopImage sd_setImageWithURL:raghttopImageUrl];
+                [_headerViewRaghtTopImage sd_setImageWithURL:raghttopImageUrl placeholderImage:[UIImage imageNamed:@"啊"]];
 
                 MarkettopicModel *raghtDownImageModel = _market_topicArray[1];
                 NSURL *raghtDownImageUrl = [NSURL URLWithString:raghtDownImageModel.pic];
-                [_headerViewRaghtDownImage sd_setImageWithURL:raghtDownImageUrl];
-
+                [_headerViewRaghtDownImage sd_setImageWithURL:raghtDownImageUrl placeholderImage:[UIImage imageNamed:@"啊"]];
                 
                 [_tableView reloadData];
             });
             
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
             
             AZType *azType = [AZType new];
             NSDictionary *responseObject = [azType AZTypeGetTakeCachePatch:@"discountMain.plist"];
@@ -364,25 +377,25 @@ HotGoodTableViewCellDelegate
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    MarkettopicModel *listImageModel = _market_topicArray[0];
-                    NSURL *listImageUrl = [NSURL URLWithString:listImageModel.pic];
-                    [_headerViewLeftImage sd_setImageWithURL:listImageUrl];
-                    
-                    MarkettopicModel *raghtTopImageModel = _market_topicArray[2];
-                    NSURL *raghttopImageUrl = [NSURL URLWithString:raghtTopImageModel.pic];
-                    [_headerViewRaghtTopImage sd_setImageWithURL:raghttopImageUrl];
-                    
-                    MarkettopicModel *raghtDownImageModel = _market_topicArray[1];
-                    NSURL *raghtDownImageUrl = [NSURL URLWithString:raghtDownImageModel.pic];
-                    [_headerViewRaghtDownImage sd_setImageWithURL:raghtDownImageUrl];
-                    
+                    if (_market_topicArray.count > 0) {
+                        MarkettopicModel *listImageModel = _market_topicArray[0];
+                        NSURL *listImageUrl = [NSURL URLWithString:listImageModel.pic];
+                        [_headerViewLeftImage sd_setImageWithURL:listImageUrl];
+                        
+                        MarkettopicModel *raghtTopImageModel = _market_topicArray[2];
+                        NSURL *raghttopImageUrl = [NSURL URLWithString:raghtTopImageModel.pic];
+                        [_headerViewRaghtTopImage sd_setImageWithURL:raghttopImageUrl];
+                        
+                        MarkettopicModel *raghtDownImageModel = _market_topicArray[1];
+                        NSURL *raghtDownImageUrl = [NSURL URLWithString:raghtDownImageModel.pic];
+                        [_headerViewRaghtDownImage sd_setImageWithURL:raghtDownImageUrl];
+                    }
                     
                     [_tableView reloadData];
                 });
 
                 
             });
-
             
         }];
         

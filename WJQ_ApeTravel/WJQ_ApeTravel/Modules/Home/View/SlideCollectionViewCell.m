@@ -31,7 +31,7 @@
 - (void)setHomeSlideModel:(HomeSlideModel *)homeSlideModel {
     _homeSlideModel = homeSlideModel;
     NSURL *url = [NSURL URLWithString:homeSlideModel.photo];
-    [_slideImageView sd_setImageWithURL:url];
+    [_slideImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
 }
 
 - (void)layoutSubviews {

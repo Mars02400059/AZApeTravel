@@ -100,7 +100,8 @@ UICollectionViewDataSource
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-
+    DiscountTypeDataPoiModel *poiModel = _collectionViewArray[indexPath.row];
+    [self.delegate AZ_typeCollecionDidIdNumber:poiModel.cityName];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

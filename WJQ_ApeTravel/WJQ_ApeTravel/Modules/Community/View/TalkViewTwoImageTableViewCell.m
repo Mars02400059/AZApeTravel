@@ -74,15 +74,7 @@
         _backLabel.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.00];
         [self.contentView addSubview:_backLabel];
         
-        //                _avatarImageView.backgroundColor = [UIColor cyanColor];
-        //                _authorLabel.backgroundColor = [UIColor redColor];
-        //                _titleLabel.backgroundColor = [UIColor yellowColor];
-        //                _forumLabel.backgroundColor = [UIColor blueColor];
-        //                _reply_numLabel.backgroundColor = [UIColor greenColor];
-        //                _reply_timeLabel.backgroundColor = [UIColor orangeColor];
-        //        _leftImageView.backgroundColor = [UIColor yellowColor];
-        //        _centerImageView.backgroundColor = [UIColor redColor];
-        //        _rightImageView.backgroundColor = [UIColor greenColor];
+        
         
     }
     return self;
@@ -91,7 +83,7 @@
 - (void)setTalkViewModel:(TalkViewModel *)talkViewModel {
     _talkViewModel = talkViewModel;
     NSURL *url = [NSURL URLWithString:talkViewModel.avatar];
-    [_avatarImageView sd_setImageWithURL:url];
+    [_avatarImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _authorLabel.text = talkViewModel.author;
     
@@ -105,10 +97,10 @@
     
     NSArray *imageUrlArray = talkViewModel.bigpic_arr;
     NSURL *leftUrl = [NSURL URLWithString:imageUrlArray[0]];
-    [_leftImageView sd_setImageWithURL:leftUrl];
+    [_leftImageView sd_setImageWithURL:leftUrl placeholderImage:[UIImage imageNamed:@"啊"]];
     
     NSURL *centerUrl = [NSURL URLWithString:imageUrlArray[1]];
-    [_centerImageView sd_setImageWithURL:centerUrl];
+    [_centerImageView sd_setImageWithURL:centerUrl placeholderImage:[UIImage imageNamed:@"啊"]];
     
     
     

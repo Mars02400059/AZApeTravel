@@ -43,10 +43,10 @@ UITableViewDataSource
         
         self.myTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         
-#warning 关闭tableView滑动
+        // 关闭tableView滑动
         _myTableView.scrollEnabled = NO;
 
-        _myTableView.backgroundColor = [UIColor cyanColor];
+        _myTableView.backgroundColor = [UIColor whiteColor];
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
         [self.contentView addSubview:_myTableView];
@@ -66,6 +66,7 @@ UITableViewDataSource
     Not_MissModel *notmissModel = _not_missArray[indexPath.row];
 
     [self.delegate AZ_nomissIdNumber:notmissModel.link_url title:notmissModel.name];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

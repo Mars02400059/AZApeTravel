@@ -149,6 +149,8 @@ UIScrollViewDelegate
 // 网络请求
 - (void)asyncLoadData:(NSString *)urlString {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = urlString;
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -182,7 +184,8 @@ UIScrollViewDelegate
             
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                 [_tableView reloadData];
                 [_collectionView reloadData];
             });

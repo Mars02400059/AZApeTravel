@@ -69,6 +69,10 @@
 		41568EA91D9F91FA000EFBEB /* AZBaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 41568EA81D9F91FA000EFBEB /* AZBaseTextField.m */; };
 		41568EAC1D9F9682000EFBEB /* AZUnderlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 41568EAB1D9F9682000EFBEB /* AZUnderlineButton.m */; };
 		4172ADB51D9E8D30005208BB /* RegisterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4172ADB41D9E8D30005208BB /* RegisterButton.m */; };
+		41799AEC1DB2159800D538CF /* AZTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41799AEB1DB2159800D538CF /* AZTabBarViewController.m */; };
+		41799B001DB235C900D538CF /* 01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41799AFD1DB235C900D538CF /* 01.jpg */; };
+		41799B011DB235C900D538CF /* 02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41799AFE1DB235C900D538CF /* 02.jpg */; };
+		41799B021DB235C900D538CF /* 03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41799AFF1DB235C900D538CF /* 03.jpg */; };
 		418250E01D9CF2B90088F78D /* MarkettopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 418250DF1D9CF2B90088F78D /* MarkettopicModel.m */; };
 		418250E71D9CF9AF0088F78D /* Hot_AreaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 418250E61D9CF9AF0088F78D /* Hot_AreaTableViewCell.m */; };
 		418250EA1D9CFBC40088F78D /* HotAreaPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 418250E91D9CFBC40088F78D /* HotAreaPlaceModel.m */; };
@@ -82,6 +86,9 @@
 		418251021D9D363F0088F78D /* DiscountTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 418251011D9D363F0088F78D /* DiscountTopic.m */; };
 		418251051D9D37F70088F78D /* DiscountTopicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 418251041D9D37F70088F78D /* DiscountTopicTableViewCell.m */; };
 		418251081D9D50510088F78D /* HotGoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 418251071D9D50510088F78D /* HotGoodTableViewCell.m */; };
+		4185CDE71DAE61DB009E8C47 /* discounCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4185CDE61DAE61DB009E8C47 /* discounCityViewController.m */; };
+		4185CDEA1DAE628C009E8C47 /* TypeCityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4185CDE91DAE628C009E8C47 /* TypeCityTableViewCell.m */; };
+		4185CDED1DAE6C57009E8C47 /* DiscountCityListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4185CDEC1DAE6C57009E8C47 /* DiscountCityListModel.m */; };
 		4191F8141D991A5000B88EBA /* CountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4191F8131D991A5000B88EBA /* CountryModel.m */; };
 		4191F8171D99205C00B88EBA /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4191F8161D99205C00B88EBA /* CityModel.m */; };
 		4191F81A1D9922A000B88EBA /* TravelInspanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4191F8191D9922A000B88EBA /* TravelInspanModel.m */; };
@@ -273,6 +280,11 @@
 		41568EAB1D9F9682000EFBEB /* AZUnderlineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZUnderlineButton.m; sourceTree = "<group>"; };
 		4172ADB31D9E8D30005208BB /* RegisterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterButton.h; sourceTree = "<group>"; };
 		4172ADB41D9E8D30005208BB /* RegisterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterButton.m; sourceTree = "<group>"; };
+		41799AEA1DB2159800D538CF /* AZTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZTabBarViewController.h; path = ../AZTabBarViewController.h; sourceTree = "<group>"; };
+		41799AEB1DB2159800D538CF /* AZTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZTabBarViewController.m; path = ../AZTabBarViewController.m; sourceTree = "<group>"; };
+		41799AFD1DB235C900D538CF /* 01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01.jpg; sourceTree = "<group>"; };
+		41799AFE1DB235C900D538CF /* 02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02.jpg; sourceTree = "<group>"; };
+		41799AFF1DB235C900D538CF /* 03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 03.jpg; sourceTree = "<group>"; };
 		418250DE1D9CF2B90088F78D /* MarkettopicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkettopicModel.h; sourceTree = "<group>"; };
 		418250DF1D9CF2B90088F78D /* MarkettopicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkettopicModel.m; sourceTree = "<group>"; };
 		418250E51D9CF9AF0088F78D /* Hot_AreaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hot_AreaTableViewCell.h; sourceTree = "<group>"; };
@@ -299,6 +311,12 @@
 		418251041D9D37F70088F78D /* DiscountTopicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountTopicTableViewCell.m; sourceTree = "<group>"; };
 		418251061D9D50510088F78D /* HotGoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotGoodTableViewCell.h; sourceTree = "<group>"; };
 		418251071D9D50510088F78D /* HotGoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotGoodTableViewCell.m; sourceTree = "<group>"; };
+		4185CDE51DAE61DB009E8C47 /* discounCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = discounCityViewController.h; sourceTree = "<group>"; };
+		4185CDE61DAE61DB009E8C47 /* discounCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = discounCityViewController.m; sourceTree = "<group>"; };
+		4185CDE81DAE628C009E8C47 /* TypeCityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeCityTableViewCell.h; sourceTree = "<group>"; };
+		4185CDE91DAE628C009E8C47 /* TypeCityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeCityTableViewCell.m; sourceTree = "<group>"; };
+		4185CDEB1DAE6C57009E8C47 /* DiscountCityListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountCityListModel.h; sourceTree = "<group>"; };
+		4185CDEC1DAE6C57009E8C47 /* DiscountCityListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCityListModel.m; sourceTree = "<group>"; };
 		4191F8121D991A5000B88EBA /* CountryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryModel.h; sourceTree = "<group>"; };
 		4191F8131D991A5000B88EBA /* CountryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryModel.m; sourceTree = "<group>"; };
 		4191F8151D99205C00B88EBA /* CityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityModel.h; sourceTree = "<group>"; };
@@ -379,10 +397,10 @@
 		49A01AD41D9518F20066C1B9 /* AZBaseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZBaseButton.m; sourceTree = "<group>"; };
 		49D9AF801D92167B0095FB0D /* WJQ_ApeTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WJQ_ApeTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D9AF841D92167B0095FB0D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		49D9AF861D92167B0095FB0D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		49D9AF871D92167B0095FB0D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		49D9AF891D92167B0095FB0D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		49D9AF8A1D92167B0095FB0D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		49D9AF861D92167B0095FB0D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
+		49D9AF871D92167B0095FB0D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
+		49D9AF891D92167B0095FB0D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
+		49D9AF8A1D92167B0095FB0D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
 		49D9AF8D1D92167B0095FB0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49D9AF901D92167B0095FB0D /* WJQ_ApeTravel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WJQ_ApeTravel.xcdatamodel; sourceTree = "<group>"; };
 		49D9AF921D92167B0095FB0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -550,6 +568,7 @@
 		412666171D9E078200E93BE5 /* buttonImage */ = {
 			isa = PBXGroup;
 			children = (
+				41799AFC1DB235C900D538CF /* 引导页 */,
 				4124B1FF1DA4C7A200D62C50 /* 1.jpg */,
 				412666191D9E078200E93BE5 /* 10.jpg */,
 				4126661A1D9E078200E93BE5 /* 2.jpg */,
@@ -603,6 +622,29 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		41799AED1DB216B500D538CF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				49D9AF861D92167B0095FB0D /* AppDelegate.h */,
+				49D9AF871D92167B0095FB0D /* AppDelegate.m */,
+				49D9AF891D92167B0095FB0D /* ViewController.h */,
+				49D9AF8A1D92167B0095FB0D /* ViewController.m */,
+				41799AEA1DB2159800D538CF /* AZTabBarViewController.h */,
+				41799AEB1DB2159800D538CF /* AZTabBarViewController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		41799AFC1DB235C900D538CF /* 引导页 */ = {
+			isa = PBXGroup;
+			children = (
+				41799AFD1DB235C900D538CF /* 01.jpg */,
+				41799AFE1DB235C900D538CF /* 02.jpg */,
+				41799AFF1DB235C900D538CF /* 03.jpg */,
+			);
+			path = "引导页";
+			sourceTree = "<group>";
+		};
 		418250E11D9CF2D60088F78D /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +668,15 @@
 				418250DF1D9CF2B90088F78D /* MarkettopicModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4185CDE41DAE61C1009E8C47 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4185CDE51DAE61DB009E8C47 /* discounCityViewController.h */,
+				4185CDE61DAE61DB009E8C47 /* discounCityViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		4191F8101D991A1400B88EBA /* Model */ = {
@@ -683,7 +734,7 @@
 				419977A21DAC6E740089BEDF /* AZType.h */,
 				419977A31DAC6E740089BEDF /* AZType.m */,
 			);
-			name = Type;
+			path = Type;
 			sourceTree = "<group>";
 		};
 		419FE4F61D98C250008ECAC5 /* JumpSubViewController */ = {
@@ -789,36 +840,36 @@
 		41EE98B61DAD00B40092C4BB /* DiscountTypeSpecial */ = {
 			isa = PBXGroup;
 			children = (
-				41EE98CF1DADBC880092C4BB /* DiscountTypeCity */,
 				41EE98B91DAD00EB0092C4BB /* Controller */,
-				41EE98B81DAD00E90092C4BB /* View */,
+				41EE98CF1DADBC880092C4BB /* DiscountTypeCity */,
 				41EE98B71DAD00E70092C4BB /* Model */,
+				41EE98B81DAD00E90092C4BB /* View */,
 			);
-			name = DiscountTypeSpecial;
+			path = DiscountTypeSpecial;
 			sourceTree = "<group>";
 		};
 		41EE98B71DAD00E70092C4BB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				41EE98CC1DAD18E90092C4BB /* DiscountTypeDataListModel.h */,
+				41EE98CD1DAD18E90092C4BB /* DiscountTypeDataListModel.m */,
 				41EE98C61DAD186A0092C4BB /* DiscountTypeDataModel.h */,
 				41EE98C71DAD186A0092C4BB /* DiscountTypeDataModel.m */,
 				41EE98C91DAD18D00092C4BB /* DiscountTypeDataPoiModel.h */,
 				41EE98CA1DAD18D00092C4BB /* DiscountTypeDataPoiModel.m */,
-				41EE98CC1DAD18E90092C4BB /* DiscountTypeDataListModel.h */,
-				41EE98CD1DAD18E90092C4BB /* DiscountTypeDataListModel.m */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		41EE98B81DAD00E90092C4BB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				41EE98BD1DAD080E0092C4BB /* TypeTableViewCell.h */,
-				41EE98BE1DAD080E0092C4BB /* TypeTableViewCell.m */,
 				41EE98C31DAD10870092C4BB /* TypeSubsCollectionViewCell.h */,
 				41EE98C41DAD10870092C4BB /* TypeSubsCollectionViewCell.m */,
+				41EE98BD1DAD080E0092C4BB /* TypeTableViewCell.h */,
+				41EE98BE1DAD080E0092C4BB /* TypeTableViewCell.m */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		41EE98B91DAD00EB0092C4BB /* Controller */ = {
@@ -827,38 +878,35 @@
 				41EE98BA1DAD012F0092C4BB /* DiscountTypeViewController.h */,
 				41EE98BB1DAD012F0092C4BB /* DiscountTypeViewController.m */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		41EE98CF1DADBC880092C4BB /* DiscountTypeCity */ = {
 			isa = PBXGroup;
 			children = (
-				41EE98D21DADBCBA0092C4BB /* Controller */,
-				41EE98D11DADBCB80092C4BB /* View */,
+				4185CDE41DAE61C1009E8C47 /* Controller */,
 				41EE98D01DADBCB40092C4BB /* Model */,
+				41EE98D11DADBCB80092C4BB /* View */,
 			);
-			name = DiscountTypeCity;
+			path = DiscountTypeCity;
 			sourceTree = "<group>";
 		};
 		41EE98D01DADBCB40092C4BB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4185CDEB1DAE6C57009E8C47 /* DiscountCityListModel.h */,
+				4185CDEC1DAE6C57009E8C47 /* DiscountCityListModel.m */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		41EE98D11DADBCB80092C4BB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4185CDE81DAE628C009E8C47 /* TypeCityTableViewCell.h */,
+				4185CDE91DAE628C009E8C47 /* TypeCityTableViewCell.m */,
 			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		41EE98D21DADBCBA0092C4BB /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Controller;
+			path = View;
 			sourceTree = "<group>";
 		};
 		49D9AF771D92167B0095FB0D = {
@@ -884,7 +932,6 @@
 		49D9AF821D92167B0095FB0D /* WJQ_ApeTravel */ = {
 			isa = PBXGroup;
 			children = (
-				419977A11DAC6E3F0089BEDF /* Type */,
 				49D9AFCB1D9218560095FB0D /* Base */,
 				49D9AFC31D9218020095FB0D /* Common */,
 				4124B2011DA4CCD700D62C50 /* DiscountImage */,
@@ -892,15 +939,12 @@
 				49D9AFAB1D92172D0095FB0D /* Resources */,
 				49D9AF831D92167B0095FB0D /* Supporting Files */,
 				4199778C1DAB97A40089BEDF /* TabBarImage */,
+				419977A11DAC6E3F0089BEDF /* Type */,
 				412666171D9E078200E93BE5 /* buttonImage */,
-				49D9AF861D92167B0095FB0D /* AppDelegate.h */,
-				49D9AF871D92167B0095FB0D /* AppDelegate.m */,
 				49D9AF921D92167B0095FB0D /* Assets.xcassets */,
 				49D9AF971D92167B0095FB0D /* Info.plist */,
 				49D9AF941D92167B0095FB0D /* LaunchScreen.storyboard */,
 				49D9AF8C1D92167B0095FB0D /* Main.storyboard */,
-				49D9AF891D92167B0095FB0D /* ViewController.h */,
-				49D9AF8A1D92167B0095FB0D /* ViewController.m */,
 				49D9AF8F1D92167B0095FB0D /* WJQ_ApeTravel.xcdatamodeld */,
 			);
 			path = WJQ_ApeTravel;
@@ -935,6 +979,7 @@
 		49D9AFAE1D9217430095FB0D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				41799AED1DB216B500D538CF /* Main */,
 				49D9AFB31D9217740095FB0D /* Community */,
 				49D9AFB71D9217970095FB0D /* Discount */,
 				49D9AFBB1D9217C20095FB0D /* Footprint */,
@@ -1049,9 +1094,9 @@
 		49D9AFB71D9217970095FB0D /* Discount */ = {
 			isa = PBXGroup;
 			children = (
-				41EE98B61DAD00B40092C4BB /* DiscountTypeSpecial */,
 				49D9AFB81D9217AD0095FB0D /* Controller */,
 				41B6FA261DA9279800DBF924 /* DiscountInfo */,
+				41EE98B61DAD00B40092C4BB /* DiscountTypeSpecial */,
 				418250E11D9CF2D60088F78D /* Model */,
 				49D9AFB91D9217B00095FB0D /* View */,
 			);
@@ -1375,6 +1420,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4199779D1DAB97A40089BEDF /* 目的地 (1).png in Resources */,
+				41799B001DB235C900D538CF /* 01.jpg in Resources */,
+				41799B011DB235C900D538CF /* 02.jpg in Resources */,
+				41799B021DB235C900D538CF /* 03.jpg in Resources */,
 				4199779C1DAB97A40089BEDF /* 推荐.png in Resources */,
 				4124B2141DA4CCD700D62C50 /* 8.png in Resources */,
 				419977A01DAB97A40089BEDF /* 社区.png in Resources */,
@@ -1533,6 +1581,7 @@
 				411F66A31D9C096A004779A5 /* BestWelcomeCollectionViewCell.m in Sources */,
 				411F66A91D9C116E004779A5 /* NecessaryCollectionViewCell.m in Sources */,
 				4124B1EB1DA1F99F00D62C50 /* RegisterViewController.m in Sources */,
+				4185CDEA1DAE628C009E8C47 /* TypeCityTableViewCell.m in Sources */,
 				419977A41DAC6E740089BEDF /* AZType.m in Sources */,
 				4191F81A1D9922A000B88EBA /* TravelInspanModel.m in Sources */,
 				41002FB81DA51EC400CDAB31 /* PartnerView.m in Sources */,
@@ -1545,6 +1594,7 @@
 				49D9AFC91D9218420095FB0D /* NSString+Regex.m in Sources */,
 				49D9AFAD1D9217400095FB0D /* AboutMe.text in Sources */,
 				49D9AFDD1D921AB20095FB0D /* FootprintViewController.m in Sources */,
+				41799AEC1DB2159800D538CF /* AZTabBarViewController.m in Sources */,
 				41EE98C51DAD10870092C4BB /* TypeSubsCollectionViewCell.m in Sources */,
 				418251051D9D37F70088F78D /* DiscountTopicTableViewCell.m in Sources */,
 				41002FAC1DA4D3CA00CDAB31 /* TalkView.m in Sources */,
@@ -1552,6 +1602,7 @@
 				41EE98BC1DAD012F0092C4BB /* DiscountTypeViewController.m in Sources */,
 				49D9AFCA1D9218420095FB0D /* UIView+Frame.m in Sources */,
 				49252C541D9405E20068B48E /* CommendView.m in Sources */,
+				4185CDE71DAE61DB009E8C47 /* discounCityViewController.m in Sources */,
 				41002FD91DA540D400CDAB31 /* OldCityCollectionViewCell.m in Sources */,
 				412666161D9E011100E93BE5 /* DiscountButtonView.m in Sources */,
 				418250E01D9CF2B90088F78D /* MarkettopicModel.m in Sources */,
@@ -1565,6 +1616,7 @@
 				49252C511D93E2430068B48E /* SlideCollectionViewCell.m in Sources */,
 				41002FB51DA5021200CDAB31 /* TalkViewImageTableViewCell.m in Sources */,
 				418250E71D9CF9AF0088F78D /* Hot_AreaTableViewCell.m in Sources */,
+				4185CDED1DAE6C57009E8C47 /* DiscountCityListModel.m in Sources */,
 				41CA240D1D9AA48400AF8EAD /* FootPrintTwoCollectionViewCell.m in Sources */,
 				41CA102D1D9BB8790094024E /* TravelSiteViewController.m in Sources */,
 				41568EAC1D9F9682000EFBEB /* AZUnderlineButton.m in Sources */,
@@ -1755,11 +1807,14 @@
 			baseConfigurationReference = 337E83EC9341EEF2D0DC4B82 /* Pods-WJQ_ApeTravel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = MyLaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WJQ_ApeTravel/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = WJQ_ApeTravel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wangjiaoqi.WJQ-ApeTravel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1772,11 +1827,14 @@
 			baseConfigurationReference = DC7173349E36538D65D9B9E5 /* Pods-WJQ_ApeTravel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = MyLaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WJQ_ApeTravel/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = WJQ_ApeTravel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wangjiaoqi.WJQ-ApeTravel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1789,6 +1847,7 @@
 			baseConfigurationReference = 0A7BAD0048A38BA313E94CE9 /* Pods-WJQ_ApeTravelTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WJQ_ApeTravelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wangjiaoqi.WJQ-ApeTravelTests";
@@ -1802,6 +1861,7 @@
 			baseConfigurationReference = 02382DD6916FA7BEC0DC808E /* Pods-WJQ_ApeTravelTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WJQ_ApeTravelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wangjiaoqi.WJQ-ApeTravelTests";

@@ -120,6 +120,8 @@ UITableViewDataSource
 // 网络请求
 - (void)asyncLoadData {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = @"http://open.qyer.com/qyer/community/hotbbs/index?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=10&lat=41.19759848641075&lon=125.6096293717715&page=1&track_app_channel=App%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%25209.3.4&v=1";
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -132,6 +134,8 @@ UITableViewDataSource
                 [_tableViewArray addObject:talkViewModel];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                 [_talkTableView.mj_header endRefreshing];
                 [_talkTableView reloadData];
             });
@@ -148,6 +152,7 @@ UITableViewDataSource
                     [_tableViewArray addObject:talkViewModel];
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    
                     [_talkTableView.mj_header endRefreshing];
                     [_talkTableView reloadData];
                 });
@@ -162,9 +167,10 @@ UITableViewDataSource
 
 - (void)loadMore {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/qyer/community/hotbbs/index?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=10&lat=41.19759848641075&lon=125.6096293717715&page=%ld&track_app_channel=App%%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%%25209.3.4&v=1", number];
-        NSLog(@"%ld", number);
         number++;
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSArray *dataArray = [responseObject objectForKey:@"data"];
@@ -173,6 +179,8 @@ UITableViewDataSource
                 [_tableViewArray addObject:talkViewModel];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                 [_talkTableView.mj_footer endRefreshing];
                 [_talkTableView reloadData];
             });

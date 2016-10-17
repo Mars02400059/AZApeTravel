@@ -33,7 +33,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.photoImageView = [UIImageView new];
-        _photoImageView.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_photoImageView];
         
         self.cnnameLabel = [UILabel new];
@@ -73,7 +72,7 @@
     _popBournModel = popBournModel;
     
     NSURL *phoneUrl = [NSURL URLWithString:popBournModel.photo];
-    [_photoImageView sd_setImageWithURL:phoneUrl];
+    [_photoImageView sd_setImageWithURL:phoneUrl placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _cnnameLabel.text = popBournModel.cnname;
     

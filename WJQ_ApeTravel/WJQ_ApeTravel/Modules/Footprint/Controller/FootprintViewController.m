@@ -74,7 +74,6 @@ UICollectionViewDataSource
 - (void)viewDidAppear:(BOOL)animated {
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
 //    self.navigationController.navigationBar.subviews.firstObject.alpha = 1;
@@ -294,12 +293,14 @@ UICollectionViewDataSource
     
 #pragma mark - 默认进入亚洲, 初始网络请求
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = @"http://open.qyer.com/qyer/footprint/continent_list?client_id=qyer_android&client_secret=9fcaae8aefc4f9ac4915&v=1&track_deviceid=A1000052A2BCDD&track_app_version=7.0.2&track_app_channel=baidu&track_device_info=PD1524B&track_os=Android5.1&app_installtime=1474192132493";
         
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
             [AZType AZTypeCacensWritePatchCachePatch:@"footprintyz.plist" cacheDic:responseObject];
             
             NSArray *dataArray = [responseObject objectForKey:@"data"];
@@ -423,10 +424,12 @@ UICollectionViewDataSource
         countryVC.oblastID = continentModel.oblastID;
         // 点击的国家
         countryVC.countryID = popBournModel.countryID;
+        countryVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:countryVC animated:YES];
     } else {
         TravelSiteViewController *travelSiteView = [[TravelSiteViewController alloc] init];
         travelSiteView.city_id = popBournModel.countryID;
+        travelSiteView.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:travelSiteView animated:YES];
     }
 
@@ -459,7 +462,6 @@ UICollectionViewDataSource
     
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
     
-    judgeLeap = NO;
 
     
     FootprintPopBournModel *restModel = _restArray[indexPath.row];
@@ -471,10 +473,12 @@ UICollectionViewDataSource
         countryVC.oblastID = continentModel.oblastID;
         // 点击的国家
         countryVC.countryID = restModel.countryID;
+        countryVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:countryVC animated:YES];
     } else {
         TravelSiteViewController *travelSiteVC = [[TravelSiteViewController alloc] init];
         travelSiteVC.city_id = restModel.countryID;
+        travelSiteVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:travelSiteVC animated:YES];
 
     
@@ -557,6 +561,8 @@ UICollectionViewDataSource
         [_restArray removeAllObjects];
 #pragma mark - 点击按钮换取大洲, 刷新网络请求
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             NSString *url = @"http://open.qyer.com/qyer/footprint/continent_list?client_id=qyer_android&client_secret=9fcaae8aefc4f9ac4915&v=1&track_deviceid=A1000052A2BCDD&track_app_version=7.0.2&track_app_channel=baidu&track_device_info=PD1524B&track_os=Android5.1&app_installtime=1474192132493";
             [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -587,7 +593,8 @@ UICollectionViewDataSource
                         }
                         
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            
+                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                             // 刷新
                             [_popBournCollectionView reloadData];
                             [_restTableView reloadData];

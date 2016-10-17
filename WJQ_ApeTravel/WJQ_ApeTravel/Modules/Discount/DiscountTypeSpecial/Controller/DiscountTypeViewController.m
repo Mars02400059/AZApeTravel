@@ -8,7 +8,7 @@
 
 #import "DiscountTypeViewController.h"
 #import "TypeTableViewCell.h"
-
+#import "discounCityViewController.h"
 
 static NSString *const Cell = @"cell";
 
@@ -47,7 +47,8 @@ TypeTableViewCellDelegate
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/qyer/discount/zk/special_list?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&lat=38.88276494355493&lon=121.5392793612916&page=1&track_app_channel=App%%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%%25209.3.4&type=%@&v=1", _type];
@@ -62,7 +63,8 @@ TypeTableViewCellDelegate
             
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                 [_tableView reloadData];
                 
             });
@@ -106,7 +108,12 @@ TypeTableViewCellDelegate
     [self.navigationController pushViewController:discountInfoVC animated:YES];
 }
 
+- (void)AZ_typeCollecionDidIdNumber:(NSString *)idNumber {
+    discounCityViewController *cityVC = [[discounCityViewController alloc] init];
+    cityVC.idNumber = idNumber;
+    [self.navigationController pushViewController:cityVC animated:YES];
 
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

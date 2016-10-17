@@ -42,7 +42,6 @@ PartnerViewDelegate
 
 - (void)viewDidAppear:(BOOL)animated {
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
-    self.tabBarController.tabBar.hidden = NO;
 
 }
 
@@ -116,11 +115,13 @@ PartnerViewDelegate
 - (void)AZ_talkViewTableViewSpringWebViewUrl:(NSString *)webViewUrl {
     CommunityWebViewViewController *webViewVC = [[CommunityWebViewViewController alloc] init];
     webViewVC.webViewUrl = webViewUrl;
+    webViewVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:webViewVC animated:YES];
 }
 - (void)AZ_partnerViewTableViewSpringVCWebViewUrl:(NSString *)webViewUrl {
     CommunityWebViewViewController *webViewVC = [[CommunityWebViewViewController alloc] init];
     webViewVC.webViewUrl = webViewUrl;
+    webViewVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:webViewVC animated:YES];
 }
 

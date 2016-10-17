@@ -84,15 +84,16 @@
     // 添加图片
     
     NSURL *cover = [NSURL URLWithString:homeModel.cover];
-    [_coverImageView sd_setImageWithURL:cover];
+//    [_coverImageView sd_setImageWithURL:cover];
+    [_coverImageView sd_setImageWithURL:cover placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _columnLabel.text = homeModel.column;
     _titleLabel.text = homeModel.title;
     _titleLabel.height = 60.f;
     _subjectLabel.text = homeModel.subject;
     NSURL *icon_url = [NSURL URLWithString:homeModel.icon_url];
-    [_icon_urlImageView sd_setImageWithURL:icon_url];
-#warning 图片字符串有问题, 需要进行剪切
+//    [_icon_urlImageView sd_setImageWithURL:icon_url];
+    [_icon_urlImageView sd_setImageWithURL:icon_url placeholderImage:[UIImage imageNamed:@"啊"]];
 
    
 }

@@ -36,7 +36,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.avatarImageView = [UIImageView new];
-        _avatarImageView.image = [UIImage imageNamed:@"占位图"];
         _avatarImageView.clipsToBounds = YES;
         [self.contentView addSubview:_avatarImageView];
         
@@ -90,8 +89,8 @@
 - (void)setPartnerViewModel:(PartnerViewModel *)partnerViewModel {
     _partnerViewModel = partnerViewModel;
     NSURL *url = [NSURL URLWithString:partnerViewModel.avatar];
-    [_avatarImageView sd_setImageWithURL:url];
-    
+//    [_avatarImageView sd_setImageWithURL:url];
+    [_avatarImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认图片"]];
     _usernameLabel.text = partnerViewModel.username;
     
     _titleLabel.text = partnerViewModel.title;

@@ -61,7 +61,8 @@
     self.picImageView = [UIImageView new];
     _picImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     [_picImageView.layer setBorderWidth:1.5f];
-    _picImageView.backgroundColor = [UIColor redColor];
+//    _picImageView.backgroundColor = [UIColor redColor];
+    
     
     // 图片适应尺寸
     _picImageView.clipsToBounds = YES;
@@ -99,14 +100,21 @@
     // 添加图片
     
 #warning 图片字符串有问题, 需要进行剪切
-    NSURL *cover = [NSURL URLWithString:homeModel.cover];
-    [_coverImageView sd_setImageWithURL:cover];
+    
+    
+//    NSURL *url = [NSURL URLWithString:@""];
+//    [_coverImageView sd_setImageWithURL:url];
+    
+    
+    [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:homeModel.cover] placeholderImage:[UIImage imageNamed:@"啊"]];
     
     
     
-    NSURL *pic = [NSURL URLWithString:[homeModel.author objectForKey:@"pic"]];
-    [_picImageView sd_setImageWithURL:pic];
+    
+    
+    [_picImageView sd_setImageWithURL:[NSURL URLWithString:[homeModel.author objectForKey:@"pic"]] placeholderImage:[UIImage imageNamed:@"啊"]];
 
+    
     _usernameLabel.text = [homeModel.author objectForKey:@"username"];
     
     _columnLabel.text = homeModel.column;
@@ -114,8 +122,8 @@
     _titleLabel.height = 60.f;
     _subjectLabel.text = homeModel.subject;
     NSURL *icon_url = [NSURL URLWithString:homeModel.icon_url];
-    [_icon_urlImageView sd_setImageWithURL:icon_url];
-    
+//    [_icon_urlImageView sd_setImageWithURL:icon_url];
+    [_icon_urlImageView sd_setImageWithURL:icon_url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     
     
@@ -132,6 +140,7 @@
     _view.frame = CGRectMake(0, 0, width, viewHeight);
     
     _coverImageView.frame = CGRectMake(0, viewHeight, width, width / 2 - 30);
+
     _columnLabel.frame = CGRectMake(0, 25 + viewHeight, 90, 25);
     
     _picImageView.frame = CGRectMake(width / 2 - 25, _view.height + _coverImageView.height - 25, 50, 50);
@@ -141,7 +150,6 @@
     _titleLabel.frame = CGRectMake(0, viewHeight, width - 100, 60);
     _titleLabel.center = CGPointMake(width / 2, width / 2 + 45 + viewHeight / 2);
     
-#warning 文字自适应高度
     _subjectLabel.frame = CGRectMake(0, 0, width - 50, 50);
     _subjectLabel.center = CGPointMake(width / 2, width / 2 + 95 + viewHeight / 2);
     

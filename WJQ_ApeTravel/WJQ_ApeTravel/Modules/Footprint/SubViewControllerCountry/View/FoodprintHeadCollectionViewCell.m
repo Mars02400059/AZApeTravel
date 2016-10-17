@@ -36,7 +36,7 @@
 - (void)setImageName:(NSString *)imageName {
     _imageName = imageName;
     NSURL *url = [NSURL URLWithString:imageName];
-    [_slideImageView sd_setImageWithURL:url];
+    [_slideImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
 }
 - (void)layoutSubviews {
     [super layoutSubviews];

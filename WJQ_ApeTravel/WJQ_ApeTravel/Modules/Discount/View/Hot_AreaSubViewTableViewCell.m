@@ -36,7 +36,6 @@
         [self.contentView addSubview:_myView];
         
         self.photoImageView = [UIImageView new];
-        _photoImageView.backgroundColor = [UIColor redColor];
 //        _photoImageView.layer.cornerRadius = 5.f;
 //        _photoImageView.clipsToBounds = YES;
         [self.myView addSubview:_photoImageView];
@@ -66,7 +65,7 @@
 - (void)setListModel:(HotAreaListModel *)listModel {
     _listModel = listModel;
     NSURL *url = [NSURL URLWithString:listModel.photo];
-    [_photoImageView sd_setImageWithURL:url];
+    [_photoImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _titleLabel.text = listModel.title;
     _soldLabel.text = listModel.sold;
@@ -101,7 +100,7 @@
     _topicListModel = topicListModel;
     
     NSURL *url = [NSURL URLWithString:topicListModel.photo];
-    [_photoImageView sd_setImageWithURL:url];
+    [_photoImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _titleLabel.text = topicListModel.title;
     
@@ -138,7 +137,7 @@
     _typeListModel = typeListModel;
     
     NSURL *url = [NSURL URLWithString:typeListModel.photo];
-    [_photoImageView sd_setImageWithURL:url];
+    [_photoImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"啊"]];
     
     _titleLabel.text = typeListModel.title;
     
@@ -182,7 +181,7 @@
     
     _myView.frame = CGRectMake(0, 15, Width, Height);
     
-    _photoImageView.frame = CGRectMake(0, 0, Height * 0.8, Height);
+    _photoImageView.frame = CGRectMake(0, 0, Height * 0.9, Height);
     
     _titleLabel.frame = CGRectMake(_photoImageView.width + 10, 3, Width - _photoImageView.width - 10 * 2, Height / 2);
     

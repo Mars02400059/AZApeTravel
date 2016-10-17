@@ -59,16 +59,19 @@ NOMissTableViewCellDelegate
     /**
      * 导航栏效果
      */
-    self.navigationController.navigationBar.hidden = NO;
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
+//    self.navigationController.navigationBar.hidden = NO;
         self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.29 green:0.75 blue:0.47 alpha:1.000];
-    self.tabBarController.tabBar.hidden = YES;
+//    self.tabBarController.tabBar.hidden = YES;
     
     
     
 }
 
 - (void)viewDidLoad {
-    
+
     self.local_basicArray = [NSMutableArray array];
     self.most_popularArray = [NSMutableArray array];
     self.not_missArray = [NSMutableArray array];
@@ -80,7 +83,7 @@ NOMissTableViewCellDelegate
 
 - (void)createSlideView {
     
-    self.travelSiteTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.travelSiteTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64) style:UITableViewStylePlain];
     _travelSiteTableView.showsVerticalScrollIndicator = NO;
     _travelSiteTableView.backgroundColor = [UIColor whiteColor];
     _travelSiteTableView.delegate = self;
@@ -105,7 +108,7 @@ NOMissTableViewCellDelegate
     _collectionView.pagingEnabled = YES;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.backgroundColor = [UIColor redColor];
+    _collectionView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:_collectionView];
     [_collectionView registerClass:[FoodprintHeadCollectionViewCell class] forCellWithReuseIdentifier:collectionCell];
     if (_timer) {
@@ -327,6 +330,8 @@ NOMissTableViewCellDelegate
 
 - (void)analysisData {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSString *url = [NSString stringWithFormat:@"http://open.qyer.com/qyer/place/city_index?city_id=%@&client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&lat=38.88274862547818&lon=121.5393111921888&page=1&track_app_channel=App%%2520Store&track_app_version=7.0.2&track_device_info=iPhone5%%2C3&track_deviceid=73524B41-B2E2-47A7-B7FD-F20ADEFBE5DA&track_os=ios%%25209.3.4&v=1", _city_id];
         [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -355,7 +360,8 @@ NOMissTableViewCellDelegate
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
                 _canameLabel.text = [_dataDic objectForKey:@"cnname"];
                 _ennameLabel.text = [_dataDic objectForKey:@"enname"];
                 NSDictionary *weatherDic = [_dataDic objectForKey:@"weather"];
